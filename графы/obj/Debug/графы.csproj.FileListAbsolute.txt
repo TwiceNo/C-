@@ -1,0 +1,10 @@
+D:\2 курс\КАиСД\2 сем\графы\bin\Debug\графы.exe.config
+D:\2 курс\КАиСД\2 сем\графы\bin\Debug\графы.exe
+D:\2 курс\КАиСД\2 сем\графы\bin\Debug\графы.pdb
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.csprojAssemblyReference.cache
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.Form1.resources
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.Properties.Resources.resources
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.csproj.GenerateResource.cache
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.csproj.CoreCompileInputs.cache
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.exe
+D:\2 курс\КАиСД\2 сем\графы\obj\Debug\графы.pdb
