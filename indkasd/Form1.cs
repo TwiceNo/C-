@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,12 +26,9 @@ namespace indkasd
         private void button1_Click(object sender, EventArgs e)
         {
             Graph graph = new Graph();
-            int node = int.Parse(textBox2.Text);
-            int[] clique = graph.clique(node);
-            string cl = "";
-            for (int i =0; i<clique.Length; i++)
-                cl += (clique[i] + 1) + " ";
-            textBox1.Text = cl;
+            int end = int.Parse(textBox2.Text);
+            int start = int.Parse(textBox1.Text);
+            textBox3.Text = graph.a_star(start, end);
         }
 
         private void label2_Click(object sender, EventArgs e)
