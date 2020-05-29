@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
@@ -23,3 +24,30 @@ Global
 		SolutionGuid = {F1D93F6D-CA83-4639-BF0A-F17E867C86A4}
 	EndGlobalSection
 EndGlobal
+=======
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "indkasd", "indkasd.csproj", "{F4CF60A1-4DAE-473C-84D4-993592635D32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4CF60A1-4DAE-473C-84D4-993592635D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CF60A1-4DAE-473C-84D4-993592635D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CF60A1-4DAE-473C-84D4-993592635D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CF60A1-4DAE-473C-84D4-993592635D32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1D93F6D-CA83-4639-BF0A-F17E867C86A4}
+	EndGlobalSection
+EndGlobal
+>>>>>>> master

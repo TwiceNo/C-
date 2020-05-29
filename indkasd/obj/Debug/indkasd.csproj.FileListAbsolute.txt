@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\repos\indkasd\bin\Debug\indkasd.exe.config
 D:\repos\indkasd\bin\Debug\indkasd.exe
 D:\repos\indkasd\bin\Debug\indkasd.pdb
@@ -8,3 +9,15 @@ D:\repos\indkasd\obj\Debug\indkasd.csproj.GenerateResource.cache
 D:\repos\indkasd\obj\Debug\indkasd.csproj.CoreCompileInputs.cache
 D:\repos\indkasd\obj\Debug\indkasd.exe
 D:\repos\indkasd\obj\Debug\indkasd.pdb
+=======
+D:\repos\indkasd\bin\Debug\indkasd.exe.config
+D:\repos\indkasd\bin\Debug\indkasd.exe
+D:\repos\indkasd\bin\Debug\indkasd.pdb
+D:\repos\indkasd\obj\Debug\indkasd.csprojAssemblyReference.cache
+D:\repos\indkasd\obj\Debug\indkasd.Form1.resources
+D:\repos\indkasd\obj\Debug\indkasd.Properties.Resources.resources
+D:\repos\indkasd\obj\Debug\indkasd.csproj.GenerateResource.cache
+D:\repos\indkasd\obj\Debug\indkasd.csproj.CoreCompileInputs.cache
+D:\repos\indkasd\obj\Debug\indkasd.exe
+D:\repos\indkasd\obj\Debug\indkasd.pdb
+>>>>>>> master
