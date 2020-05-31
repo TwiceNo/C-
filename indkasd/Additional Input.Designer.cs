@@ -32,10 +32,10 @@
             this.variable_1 = new System.Windows.Forms.Label();
             this.variable_1_input = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.variable_2_input = new System.Windows.Forms.TextBox();
+            this.variable_2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ok_button = new System.Windows.Forms.Button();
-            this.variable_2 = new System.Windows.Forms.Label();
-            this.variable_2_input = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +90,27 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 54);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
+            // variable_2_input
+            // 
+            this.variable_2_input.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.variable_2_input.Location = new System.Drawing.Point(190, 30);
+            this.variable_2_input.Name = "variable_2_input";
+            this.variable_2_input.Size = new System.Drawing.Size(181, 20);
+            this.variable_2_input.TabIndex = 5;
+            this.variable_2_input.Visible = false;
+            // 
+            // variable_2
+            // 
+            this.variable_2.AutoSize = true;
+            this.variable_2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.variable_2.Location = new System.Drawing.Point(3, 27);
+            this.variable_2.Name = "variable_2";
+            this.variable_2.Size = new System.Drawing.Size(181, 27);
+            this.variable_2.TabIndex = 4;
+            this.variable_2.Text = "label2";
+            this.variable_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.variable_2.Visible = false;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -119,27 +140,6 @@
             this.ok_button.UseVisualStyleBackColor = true;
             this.ok_button.Click += new System.EventHandler(this.ok_button_Click);
             // 
-            // variable_2
-            // 
-            this.variable_2.AutoSize = true;
-            this.variable_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.variable_2.Location = new System.Drawing.Point(3, 27);
-            this.variable_2.Name = "variable_2";
-            this.variable_2.Size = new System.Drawing.Size(181, 27);
-            this.variable_2.TabIndex = 4;
-            this.variable_2.Text = "label2";
-            this.variable_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.variable_2.Visible = false;
-            // 
-            // variable_2_input
-            // 
-            this.variable_2_input.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.variable_2_input.Location = new System.Drawing.Point(190, 30);
-            this.variable_2_input.Name = "variable_2_input";
-            this.variable_2_input.Size = new System.Drawing.Size(181, 20);
-            this.variable_2_input.TabIndex = 5;
-            this.variable_2_input.Visible = false;
-            // 
             // Additional_Input
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,7 +147,7 @@
             this.ClientSize = new System.Drawing.Size(380, 152);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "Additional_Input";
-            this.Text = "Additional_Input";
+            this.Text = "Требуются дополнительные данные";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

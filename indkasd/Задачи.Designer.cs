@@ -239,7 +239,6 @@
             // preview
             // 
             this.preview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.preview.Enabled = false;
             this.preview.Location = new System.Drawing.Point(3, 65);
             this.preview.Name = "preview";
             this.preview.Size = new System.Drawing.Size(253, 242);
@@ -275,17 +274,17 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.843137F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.843137F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.70588F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.843137F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.70588F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.843137F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.741935F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.709678F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.419355F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.90323F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.419355F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.90323F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.419355F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.09678F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.419355F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.803922F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.843137F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.803922F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 310);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(298, 310);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // task1
@@ -303,7 +302,7 @@
             // task3
             // 
             this.task3.AutoSize = true;
-            this.task3.Location = new System.Drawing.Point(3, 132);
+            this.task3.Location = new System.Drawing.Point(3, 117);
             this.task3.Name = "task3";
             this.task3.Size = new System.Drawing.Size(70, 17);
             this.task3.TabIndex = 2;
@@ -320,14 +319,14 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Location = new System.Drawing.Point(3, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 36);
+            this.label1.Size = new System.Drawing.Size(292, 27);
             this.label1.TabIndex = 5;
             this.label1.Text = "    Дан связный неориентированный граф, проверить, \r\n    будет ли он Эйлеровым.";
             // 
             // task5
             // 
             this.task5.AutoSize = true;
-            this.task5.Location = new System.Drawing.Point(3, 255);
+            this.task5.Location = new System.Drawing.Point(3, 256);
             this.task5.Name = "task5";
             this.task5.Size = new System.Drawing.Size(70, 17);
             this.task5.TabIndex = 4;
@@ -339,7 +338,7 @@
             // task2
             // 
             this.task2.AutoSize = true;
-            this.task2.Location = new System.Drawing.Point(3, 63);
+            this.task2.Location = new System.Drawing.Point(3, 54);
             this.task2.Name = "task2";
             this.task2.Size = new System.Drawing.Size(70, 17);
             this.task2.TabIndex = 1;
@@ -351,8 +350,7 @@
             // task4
             // 
             this.task4.AutoSize = true;
-            this.task4.Enabled = false;
-            this.task4.Location = new System.Drawing.Point(3, 201);
+            this.task4.Location = new System.Drawing.Point(3, 180);
             this.task4.Name = "task4";
             this.task4.Size = new System.Drawing.Size(70, 17);
             this.task4.TabIndex = 3;
@@ -367,9 +365,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(3, 84);
+            this.label2.Location = new System.Drawing.Point(3, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 45);
+            this.label2.Size = new System.Drawing.Size(292, 40);
             this.label2.TabIndex = 6;
             this.label2.Text = "    Дан неориентированный граф, дана вершина. \r\n    Построить произвольную максим" +
     "альную клику, \r\n    содержащую данную вершину.";
@@ -380,9 +378,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(3, 153);
+            this.label3.Location = new System.Drawing.Point(3, 137);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(287, 45);
+            this.label3.Size = new System.Drawing.Size(292, 40);
             this.label3.TabIndex = 7;
             this.label3.Text = "    Дан слабосвязный ориентированный граф. \r\n    Проверить, возможно ли построить" +
     " топологическую\r\n    сортировку.";
@@ -393,11 +391,13 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(3, 222);
+            this.label4.Location = new System.Drawing.Point(3, 200);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 30);
+            this.label4.Size = new System.Drawing.Size(292, 53);
             this.label4.TabIndex = 8;
-            this.label4.Text = "    В разработке";
+            this.label4.Text = "    Дан неориентированный связный граф, дано \r\n    фундаментальное множество цикл" +
+    "ов. Дан \r\n    произвольный цикл. Построить его представление \r\n    в виде суммы " +
+    "циклов из ФМЦ.\r\n";
             // 
             // label5
             // 
@@ -407,7 +407,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label5.Location = new System.Drawing.Point(3, 276);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(287, 34);
+            this.label5.Size = new System.Drawing.Size(292, 34);
             this.label5.TabIndex = 9;
             this.label5.Text = "    Реализовать алгоритм А* нахождения кратчайшего \r\n    пути.";
             // 

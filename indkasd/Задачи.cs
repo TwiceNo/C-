@@ -19,26 +19,41 @@ namespace indkasd
 
         private void task1_CheckedChanged(object sender, EventArgs e)
         {
+            this.label7.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
             curr_task = 1;
         }
 
         private void task2_CheckedChanged(object sender, EventArgs e)
         {
+            this.label7.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
             curr_task = 2;
         }
 
         private void task3_CheckedChanged(object sender, EventArgs e)
         {
+            this.label7.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
             curr_task = 3;
         }
 
         private void task4_CheckedChanged(object sender, EventArgs e)
         {
+            this.label7.Enabled = true;
+            this.path_to_cycles.Enabled = true;
+            this.choose_cycles.Enabled = true;
             curr_task = 4;
         }
 
         private void task5_CheckedChanged(object sender, EventArgs e)
         {
+            this.label7.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
             curr_task = 5;
         }
 
@@ -113,16 +128,20 @@ namespace indkasd
                         }
                         break;
 
-                    //case 4:
-                    //    if (dir_fcycles == null)
-                    //        no_file_chosen("cycles");
-                    //    else
-                    //    {
-                    //        window = new Additional_Input(task);
-                    //        window.ShowDialog();
-                            
-                    //    }
-                    //    break;
+                    case 4:
+                        if (dir_fcycles == null)
+                            no_file_chosen("cycles");
+                        else
+                        {
+                            vars = new List<int[]>();
+                            window = new Additional_Input(task, vars, max_node);
+                            window.ShowDialog(); vars = window.vars;
+                            answer = graph.cycle_representation(vars[0], dir_fcycles);
+                            res_pop_up(task, answer);
+                            to_file(dir_graph, task, answer);
+
+                        }
+                        break;
 
                     case 5:
                         vars = new List<int[]>();
@@ -163,7 +182,7 @@ namespace indkasd
         private void choose_graph_Click(object sender, EventArgs e)
         {
             OpenFileDialog choose_file = new OpenFileDialog();
-            choose_file.Filter = "txt files (*.txt)|*.txt";
+            choose_file.Filter = "Текстовый документ (*.txt)|*.txt";
             choose_file.FilterIndex = 1;
             choose_file.RestoreDirectory = true;
 
@@ -181,14 +200,14 @@ namespace indkasd
         private void choose_cycles_Click(object sender, EventArgs e)
         {
             OpenFileDialog choose_file = new OpenFileDialog();
-            choose_file.Filter = "txt files (*.txt)|*.txt";
+            choose_file.Filter = "Текстовый документ (*.txt)|*.txt";
             choose_file.FilterIndex = 1;
             choose_file.RestoreDirectory = true;
 
             if (choose_file.ShowDialog() == DialogResult.OK)
             {
                 this.dir_fcycles = choose_file.FileName;
-                this.path_to_cycles.Text = this.dir_graph;
+                this.path_to_cycles.Text = this.dir_fcycles;
 
                 StreamReader content = new StreamReader(this.dir_graph);
                 this.preview.Text = content.ReadToEnd();
@@ -212,10 +231,11 @@ namespace indkasd
         private int[][] make_oriented(int[][] source)
         {
             int[][] new_graph = new int[source.Length][];
+            for (int j = 0; j < source.Length; j++)
+                new_graph[j] = new int[source.Length];
             for (int i=0; i<source.Length; i++)
             {
-                new_graph[i] = new int[source.Length];
-                for (int j = 0;j < source.Length; j++)
+                for (int j = 0; j < source.Length; j++)
                     if (source[i][j] != 0)
                     {
                         new_graph[i][j] = 1;

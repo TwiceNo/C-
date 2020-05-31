@@ -19,12 +19,13 @@ namespace indkasd
     class Graph
     {
         public int[][] matrix;
+        private bool f = false;
 
         public Graph(string dir)
         {
             StreamReader read = new StreamReader(dir);
             string line = read.ReadLine();
-            string[] splitted = line.Split(' ');
+            string[] splitted = line.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             matrix = new int[splitted.Length][];
             for (int k = 0; k < splitted.Length; k++)
             {
@@ -34,13 +35,20 @@ namespace indkasd
                 if (k != splitted.Length - 1)
                 {
                     line = read.ReadLine();
-                    splitted = line.Split(' ');
+                    splitted = line.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 }
             }
             read.Close();
         }
 
+        ~Graph()
+        {
+
+        }
+
+
         //~~~~~~~~~~~~~~~~Part 1~~~~~~~~~~~~~~~~
+
 
         private bool degrees_check()
         {
@@ -88,7 +96,7 @@ namespace indkasd
                     nodes[i] = i; nodes[j] = i;
                 }
                 else
-                    nodes[i] = j;
+                    nodes[i] = nodes[j];
             else
             {
                 int old = i;
@@ -105,7 +113,9 @@ namespace indkasd
             else return "Граф не эйлеров";
         }
 
+
         //~~~~~~~~~~~~~~~~Part 2~~~~~~~~~~~~~~~~
+
 
         public string clique(int node)
         {
@@ -148,164 +158,156 @@ namespace indkasd
                 return "Граф может быть отсортирован.";
         }
 
+
         private bool cycles_check()
         {
             bool[] visited = new bool[matrix.Length];
-            return cycles_check(visited, 0);
+            for (int i = 0; i < matrix.Length; i++)
+                if (!visited[i] && !f)
+                    cycles_check(visited, i);
+            return f;
         }
 
-        private bool cycles_check(bool[] visited, int node)
+        private void cycles_check(bool[] visited, int node)
         {
             Queue<int> nodes_to_check = new Queue<int>();
+
+            visited[node] = true;
             for (int i = 0; i < matrix.Length; i++)
                 if (matrix[node][i] != 0)
-                    if (visited[i] == true) return true;
-                    else
+                    if (visited[i] == true)
                     {
-                        visited[i] = true;
-                        nodes_to_check.Enqueue(i);
+                        f = true; break;
                     }
-            while (nodes_to_check.Count != 0)
+                    else
+                        nodes_to_check.Enqueue(i);
+            while (nodes_to_check.Count != 0 && !f)
                 cycles_check(visited, nodes_to_check.Dequeue());
-            return false;
+
         }
+
 
 
         //~~~~~~~~~~~~~~~~Part 4~~~~~~~~~~~~~~~~
 
-        //public string cycle_representation(int[] cycle)
-        //{
-        //    if (check_existence(cycle))
-        //        return build_representation(cycle);
-        //    else
-        //        return "Cycle does not exist";
-        //}
 
-        //private bool check_existence(int[] cycle)
-        //{
-        //    int start = cycle[0], end = cycle[cycle.Length - 1];
-        //    for (int i = 1; i < cycle.Length; i++)
-        //        if (matrix[cycle[i - 1]][cycle[i]] == 0)
-        //            return false;
-        //    if (matrix[start][end] == 0)
-        //        return false;
-        //    return true;
-        //}
+        public string cycle_representation(int[] cycle, string dir)
+        {
+            if (check_existence(cycle))
+                return build_representation(cycle, dir);
+            else return "Цикл не существует";
+        }
 
-        //private string build_representation(int[] cycle)
-        //{
-        //    List<int[]> fcycle_set = read_fcycles();
-        //    List<int> sum_cycles = new List<int>();
-        //    List<int> curr_cycle = new List<int>();
-        //    cycle_selection(fcycle_set, sum_cycles, curr_cycle, cycle);
-        //    string output = "";
-        //    for (int i = 0; i < sum_cycles.Count; i++)
-        //    {
-        //        output += "C" + sum_cycles[i];
-        //        if (i != sum_cycles.Count - 1)
-        //            output += " ⊕ ";
-        //    }
-        //    return output;
-        //}
+        private bool check_existence(int[] cycle)
+        {
+            int start = cycle[0], end = cycle[cycle.Length - 1];
+            for (int i = 1; i < cycle.Length; i++)
+                if (matrix[cycle[i - 1]][cycle[i]] == 0)
+                    return false;
+            if (matrix[start][end] == 0)
+                return false;
+            return true;
+        }
 
-        //private List<int[]> read_fcycles(string dir)
-        //{
-        //    List<int[]> cycles = new List<int[]>();
-        //    StreamReader read = new StreamReader(dir);
-        //    string line;
-        //    do
-        //    {
-        //        line = read.ReadLine();
-        //        if (line != null)
-        //        {
-        //            string[] splitted = line.Split(' ');
-        //            int[] curr_cycle = new int[splitted.Length];
-        //            for (int i = 0; i < splitted.Length; i++)
-        //                curr_cycle[i] = int.Parse(splitted[i]);
-        //            cycles.Add(curr_cycle);
-        //        }
-        //    } while (line != null);
-        //    return cycles;
-        //}
+        private string build_representation(int[] cycle, string dir)
+        {
+            List<int[]> all_cycles = read_cycles(dir);
+            List<int> sum = sum_cycles(all_cycles, cycle);
+            string ans = "";
+            for (int i = 0; i < sum.Count; i++)
+            {
+                ans += "C" + sum[i];
+                if (i != sum.Count - 1)
+                    ans += " ⊕ ";
+            }
+            return ans;
+        }
 
-        //private void cycle_selection(List<int[]> set, List<int> sum, List<int> curr, int[] cycle)
-        //{
-        //    if (!same(curr, cycle))
-        //    {
-        //        int first = sum.Count; int last;
-        //        if (first == cycle.Length - 1) last = 0;
-        //        else last = first + 1;
-        //        Queue<int> possible = find_all(set, sum, cycle[first], cycle[last]);
-        //        while (possible.Count != 0)
-        //        {
-        //            sum.Add(possible.Dequeue());
-        //            cycle_selection(set, sum, build_cycle(set, sum), cycle);
-        //        }
-        //    }
-        //}
+        private List<int[]> read_cycles(string dir)
+        {
+            List<int[]> cycles = new List<int[]>();
+            StreamReader read = new StreamReader(dir);
+            string[] lines = read.ReadToEnd().Split('\n');
+            for (int k = 0; k < lines.Length; k++)
+            {
+                string[] content = lines[k].Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                int[] cycle = new int[content.Length];
+                for (int i = 0; i < content.Length; i++)
+                    cycle[i] = int.Parse(content[i]);
+                cycles.Add(cycle);
+            }
+            read.Close();
+            return cycles;
+        }
 
-        //private bool same(List<int> curr, int[] cycle)
-        //{
-        //    if (curr.Count != cycle.Length) return false;
-        //    for (int i = 0; i < curr.Count; i++)
-        //        if (curr[i] != cycle[i]) return false;
-        //    return true;
-        //}
+        private List<int> sum_cycles(List<int[]> all, int[] sample)
+        {
+            List<List<int[]>> all_queues = new List<List<int[]>>();
+            List<int[]> edges = new List<int[]>();
+            for (int i = 0; i < sample.Length; i++)
+            {
+                int a, b; int[] edge = new int[2];
+                if (i == sample.Length - 1)
+                {
+                    a = i; b = 0;
+                }
+                else
+                {
+                    a = i; b = i + 1;
+                }
+                List<int[]> edge_List = new List<int[]>();
+                for (int j = 0; j < all.Count; j++)
+                    if (contains_edge(all[j], sample[a], sample[b]))
+                        edge_List.Add(all[j]);
+                all_queues.Add(edge_List);
+                edge[0] = sample[a]; edge[1] = sample[b];
+                edges.Add(edge);
+            }
+            List<int[]> list = search(all_queues, sample);
+            return restore(all, list);
+        }
 
-        //private Queue<int> find_all(List<int[]> set, List<int> sum, int first, int last)
-        //{
-        //    Queue<int> occurences = new Queue<int>();
-        //    for (int i = 0; i < set.Count; i++)
-        //    {
-        //        for (int j = 0; j < set[i].Length - 1; j++)
-        //            if (set[i][j] == first && set[i][j + 1] == last || set[i][j] == last && set[i][j + 1] == first)
-        //                if (!sum.Contains(i)) occurences.Enqueue(i);
-        //        if (set[i][0] == first && set[i][set[i].Length - 1] == last || set[i][0] == last && set[i][set[i].Length - 1] == first)
-        //            if (!sum.Contains(i)) occurences.Enqueue(i);
-        //    }
-        //    return occurences;
-        //}
+        private bool contains_edge(int[] list, int v1, int v2)
+        {
+            for (int i = 0; i < list.Length; i++)
+            {
+                int a, b;
+                if (i == list.Length - 1)
+                {
+                    a = i; b = 0;
+                }
+                else
+                {
+                    a = i; b = i + 1;
+                }
+                if ((list[a] == v1 && list[b] == v2) || (list[b] == v1 && list[a] == v2))
+                    return true;
+            }
+            return false;
+        }
 
-        //private List<int> build_cycle(List<int[]> set, List<int> sum)
-        //{
-        //    bool[][] building_matrix = new bool[matrix.Length][];
-        //    for (int i = 0; i < matrix.Length; i++)
-        //        building_matrix[i] = new bool[matrix.Length];
-        //    for (int i = 0; i < sum.Count; i++)
-        //    {
-        //        for (int j = 0; j < set[i].Length - 1; j++)
-        //        {
-        //            building_matrix[set[i][j]][set[i][j + 1]] = invert(building_matrix[set[i][j]][set[i][j + 1]]);
-        //            building_matrix[set[i][j + 1]][set[i][j]] = invert(building_matrix[set[i][j + 1]][set[i][j]]);
-        //        }
-        //        building_matrix[set[i][0]][set[i][set[i].Length - 1]] = invert(building_matrix[set[i][0]][set[i][set[i].Length - 1]]);
-        //        building_matrix[set[i][set[i].Length - 1]][set[i][0]] = invert(building_matrix[set[i][set[i].Length - 1]][set[i][0]]);
-        //    }
-        //    List<int> cycle = new List<int>();
-        //    bool[] visited = new bool[matrix.Length];
-        //    for (int i = 0; i < matrix.Length; i++)
-        //        for (int j = i; j < matrix.Length; j++)
-        //            if (building_matrix[i][j])
-        //            {
-        //                if (!visited[i])
-        //                {
-        //                    cycle.Add(i); visited[i] = true;
-        //                }
-        //                if (!visited[j])
-        //                {
-        //                    cycle.Add(j); visited[j] = true;
-        //                }
-        //            }
-        //    return cycle;
-        //}
+        private List<int[]> search(List<List<int[]>> list, int[] cycle)
+        {
+            List<int[]> main_list = new List<int[]>();
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].Count == 1)
+                    main_list.Add(list[i][0]);
+            return main_list;
+        }
 
-        //private bool invert(bool val)
-        //{
-        //    if (val) return false;
-        //    else return true;
-        //}
+        private List<int> restore(List<int[]> all, List<int[]> used)
+        {
+            List<int> indexes = new List<int>();
+            for (int i = 0; i < all.Count; i++)
+                for (int j = 0; j < used.Count; j++)
+                    if (all[i] == used[j])
+                        indexes.Add(i);
+            return indexes;
+        }
+
 
         //~~~~~~~~~~~~~~~~Part 5~~~~~~~~~~~~~~~~
+
 
         public string a_star(int start, int goal)
         {
@@ -381,7 +383,7 @@ namespace indkasd
 
 
         //~~~~~~~~~~~~~~~~~~~~Other~~~~~~~~~~~~~~~~~~~~~~~
-        
+
         public bool oriented(int[][] graph)
         {
             for (int i = 0; i < graph.Length; i++)

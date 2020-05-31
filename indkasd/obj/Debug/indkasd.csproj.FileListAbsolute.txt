@@ -21,3 +21,16 @@ D:\repos\C#\indkasd\obj\Debug\indkasd.pdb
 D:\repos\C#\indkasd\obj\Debug\indkasd.Result.resources
 D:\repos\C#\indkasd\obj\Debug\indkasd.PopUp.resources
 D:\repos\C#\indkasd\obj\Debug\indkasd.Additional_Input.resources
+D:\repos\kasd\C-\indkasd\bin\Debug\indkasd.exe.config
+D:\repos\kasd\C-\indkasd\bin\Debug\indkasd.exe
+D:\repos\kasd\C-\indkasd\bin\Debug\indkasd.pdb
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.csprojAssemblyReference.cache
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.Additional_Input.resources
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.PopUp.resources
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.Properties.Resources.resources
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.Result.resources
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.Задачи.resources
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.csproj.GenerateResource.cache
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.csproj.CoreCompileInputs.cache
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.exe
+D:\repos\kasd\C-\indkasd\obj\Debug\indkasd.pdb

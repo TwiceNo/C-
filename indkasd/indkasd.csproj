@@ -68,7 +68,6 @@
     <Compile Include="Result.Designer.cs">
       <DependentUpon>Result.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stack.cs" />
     <Compile Include="Задачи.cs">
       <SubType>Form</SubType>
     </Compile>

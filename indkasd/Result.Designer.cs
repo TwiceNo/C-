@@ -79,7 +79,7 @@
             this.ClientSize = new System.Drawing.Size(311, 153);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Result";
-            this.Text = "Result";
+            this.Text = "Результат";
             this.Load += new System.EventHandler(this.Result_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

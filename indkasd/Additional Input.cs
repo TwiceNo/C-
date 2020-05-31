@@ -74,7 +74,7 @@ namespace indkasd
             int output;
             if (text != null)
             {
-                string[] splitted = text.Split(' ');
+                string[] splitted = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < splitted.Length; i++)
                     if (int.TryParse(splitted[i], out output))
                     {
@@ -89,7 +89,7 @@ namespace indkasd
 
         private void get_var(string text)
         {
-            string[] splitted = text.Split(' ');
+            string[] splitted = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int[] conv = new int[splitted.Length];
             for (int i = 0; i < splitted.Length; i++)
                 conv[i] = int.Parse(splitted[i]);
