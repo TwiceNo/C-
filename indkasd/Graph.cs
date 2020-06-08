@@ -173,12 +173,22 @@ namespace indkasd
 
         //~~~~~~~~~~~~~~~~Part 4~~~~~~~~~~~~~~~~
 
+<<<<<<< HEAD
+
+        //public string cycle_representation(int[] cycle, string dir)
+        //{
+        //    if (check_existence(cycle))
+        //        return build_representation(cycle, dir);
+        //    else
+        //        return "Цикл не существует.";
+=======
         //public string cycle_representation(int[] cycle)
         //{
         //    if (check_existence(cycle))
         //        return build_representation(cycle);
         //    else
         //        return "Cycle does not exist";
+>>>>>>> master
         //}
 
         //private bool check_existence(int[] cycle)
@@ -192,12 +202,23 @@ namespace indkasd
         //    return true;
         //}
 
+<<<<<<< HEAD
+
+        //private string build_representation(int[] cycle, string dir)
+        //{
+        //    List<int[]> fcycle_set = read_fcycles(dir);
+        //    List<int> sum_cycles = new List<int>();
+        //    int[] curr_cycle = fcycle_set[0];
+
+        //    sum_cycles = cycle_selection(fcycle_set, curr_cycle, cycle, 1, 1, 1, sum_cycles);
+=======
         //private string build_representation(int[] cycle)
         //{
         //    List<int[]> fcycle_set = read_fcycles();
         //    List<int> sum_cycles = new List<int>();
         //    List<int> curr_cycle = new List<int>();
         //    cycle_selection(fcycle_set, sum_cycles, curr_cycle, cycle);
+>>>>>>> master
         //    string output = "";
         //    for (int i = 0; i < sum_cycles.Count; i++)
         //    {
@@ -208,6 +229,131 @@ namespace indkasd
         //    return output;
         //}
 
+<<<<<<< HEAD
+        //private List<int> cycle_selection(List<int[]> set, int[] current, int[] cycle, int index, int size, int curr_size, List<int> used)
+        //{
+        //    if (same(current, cycle))
+        //        return used;
+        //    else
+        //        if (index < set.Count)
+        //            if (curr_size < size)
+        //            {
+        //                used.Add(index);
+        //                cycle_selection(set, sum(current, set[index]), cycle, index++, size, curr_size++, used);
+        //            }
+        //            else
+        //                current = sum(current, set[index]); used.RemoveAt(used.Count - 1);
+        //                if (index == set.Count - 1)
+        //                {
+        //                    used.Clear();
+        //                    cycle_selection(set, set[0], cycle, 0, size++, 1, used);
+        //                }
+        //                else
+        //                    cycle_selection(set, current, cycle, index++, size, curr_size, used);
+        //        else
+        //           if (curr_size < size)
+        //}
+
+        //private bool same(int[] one, int[] another)
+        //{
+        //    if (one.Length != another.Length)
+        //        return false;
+        //    else
+        //    {
+        //        int[] curr_edge = new int[2];
+        //        for (int i = 0; i < one.Length; i++)
+        //        {
+        //            if (i == one.Length - 1)
+        //            {
+        //                curr_edge[0] = one[i];
+        //                curr_edge[1] = one[0];
+        //            }
+        //            else
+        //            {
+        //                curr_edge[0] = one[i];
+        //                curr_edge[1] = one[i + 1];
+        //            }
+        //            if (!contains(another, curr_edge))
+        //                return false;
+        //        }
+        //        return true;
+        //    }
+        //}
+
+
+        //private bool contains(int[] list, int[] edge)
+        //{
+        //    for (int i =0; i < list.Length; i++)
+        //        if (list[i] == edge[0])
+        //            if (i == 0)
+        //            {
+        //                if (list[i + 1] == edge[1] || list[list.Length - 1] == edge[1])
+        //                    return true;
+        //            }
+        //            else
+        //                if (i == list.Length - 1)
+        //                {
+        //                    if (list[0] == edge[1] || list[i - 1] == edge[1])
+        //                        return true;
+        //                }
+        //                else 
+        //                    if (list[i + 1] == edge[1] || list[i - 1] == edge[1])
+        //                        return true;
+        //    return false;
+        //}
+
+        //private int[] sum(int[] one, int[] another)
+        //{
+        //    bool[][] sum = new bool[matrix.Length][];
+        //    for (int i = 0; i < matrix.Length; i++)
+        //        sum[i] = new bool[matrix.Length];
+        //    for (int i = 0; i < one.Length-1; i++)
+        //        if (i ==0)
+        //        {
+        //            sum[0][one.Length - 1] = !sum[0][one.Length - 1];
+        //            sum[one.Length - 1][0] = !sum[one.Length - 1][0];
+        //        }
+        //    for (int i = 0; i < another.Length - 1; i++)
+        //        if (i == 0)
+        //        {
+        //            sum[0][another.Length - 1] = !sum[0][another.Length - 1];
+        //            sum[another.Length - 1][0] = !sum[another.Length - 1][0];
+        //        }
+
+        //    List<int> res = new List<int>();
+        //    for (int i = 0; i < matrix.Length; i++)
+        //    {
+        //        if (res.Contains(i)) break;
+        //        for (int j = 0; j < matrix.Length; j++)
+        //            if (sum[i][j])
+        //            {
+        //                res.Add(i);
+        //                i = j;
+        //            }
+        //    }
+        //    return res.ToArray();
+        //}
+
+        ////private string build_representation(int[] cycle, string dir)
+        ////{
+        ////    List<int[]> fcycle_set = read_fcycles(dir);
+        ////    List<int> sum_cycles = new List<int>();
+        ////    List<int> curr_cycle = new List<int>();
+
+        ////    cycle_selection(fcycle_set, sum_cycles, curr_cycle, cycle);
+
+        ////    string output = "";
+        ////    for (int i = 0; i < sum_cycles.Count; i++)
+        ////    {
+        ////        output += "C" + sum_cycles[i];
+        ////        if (i != sum_cycles.Count - 1)
+        ////            output += " ⊕ ";
+        ////    }
+        ////    return output;
+        ////}
+
+=======
+>>>>>>> master
         //private List<int[]> read_fcycles(string dir)
         //{
         //    List<int[]> cycles = new List<int[]>();
@@ -338,7 +484,11 @@ namespace indkasd
                     closed.Add(working_node);
                 }
             }
+<<<<<<< HEAD
+            return "Путь не существует";
+=======
             return "Path does not exists";
+>>>>>>> master
         }
 
         private void depth(int[] list, int goal)
@@ -381,7 +531,11 @@ namespace indkasd
 
 
         //~~~~~~~~~~~~~~~~~~~~Other~~~~~~~~~~~~~~~~~~~~~~~
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> master
         public bool oriented(int[][] graph)
         {
             for (int i = 0; i < graph.Length; i++)

@@ -20,26 +20,41 @@ namespace indkasd
         private void task1_CheckedChanged(object sender, EventArgs e)
         {
             curr_task = 1;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task2_CheckedChanged(object sender, EventArgs e)
         {
             curr_task = 2;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task3_CheckedChanged(object sender, EventArgs e)
         {
             curr_task = 3;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task4_CheckedChanged(object sender, EventArgs e)
         {
             curr_task = 4;
+            this.fcycles_label.Enabled = true;
+            this.path_to_cycles.Enabled = true;
+            this.choose_cycles.Enabled = true;
         }
 
         private void task5_CheckedChanged(object sender, EventArgs e)
         {
             curr_task = 5;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -118,9 +133,12 @@ namespace indkasd
                     //        no_file_chosen("cycles");
                     //    else
                     //    {
-                    //        window = new Additional_Input(task);
-                    //        window.ShowDialog();
-                            
+                    //        vars = new List<int[]>();
+                    //        window = new Additional_Input(task, vars, max_node);
+                    //        window.ShowDialog(); vars = window.vars;
+                    //        answer = graph.cycle_representation(vars[0], dir_fcycles);
+                    //        res_pop_up(task, answer);
+                    //        to_file(dir_graph, task, answer);
                     //    }
                     //    break;
 
@@ -188,11 +206,7 @@ namespace indkasd
             if (choose_file.ShowDialog() == DialogResult.OK)
             {
                 this.dir_fcycles = choose_file.FileName;
-                this.path_to_cycles.Text = this.dir_graph;
-
-                StreamReader content = new StreamReader(this.dir_graph);
-                this.preview.Text = content.ReadToEnd();
-                content.Close();
+                this.path_to_cycles.Text = this.dir_fcycles;
             }
         }
 
@@ -223,6 +237,11 @@ namespace indkasd
                     }    
             }
             return new_graph;
+        }
+
+        private void Задачи_Load(object sender, EventArgs e)
+        {
+
         }
 
         public Задачи()
