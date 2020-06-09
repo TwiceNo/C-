@@ -340,7 +340,11 @@ namespace indkasd
                     closed.Add(working_node);
                 }
             }
+<<<<<<< HEAD
+            return "Путь не существует";
+=======
             return "Path does not exists";
+>>>>>>> master
         }
 
         private void depth(int[] list, int goal)

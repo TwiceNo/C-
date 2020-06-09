@@ -23,6 +23,9 @@ namespace indkasd
             this.path_to_cycles.Enabled = false;
             this.choose_cycles.Enabled = false;
             curr_task = 1;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task2_CheckedChanged(object sender, EventArgs e)
@@ -31,6 +34,9 @@ namespace indkasd
             this.path_to_cycles.Enabled = false;
             this.choose_cycles.Enabled = false;
             curr_task = 2;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task3_CheckedChanged(object sender, EventArgs e)
@@ -39,6 +45,9 @@ namespace indkasd
             this.path_to_cycles.Enabled = false;
             this.choose_cycles.Enabled = false;
             curr_task = 3;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void task4_CheckedChanged(object sender, EventArgs e)
@@ -47,6 +56,9 @@ namespace indkasd
             this.path_to_cycles.Enabled = true;
             this.choose_cycles.Enabled = true;
             curr_task = 4;
+            this.fcycles_label.Enabled = true;
+            this.path_to_cycles.Enabled = true;
+            this.choose_cycles.Enabled = true;
         }
 
         private void task5_CheckedChanged(object sender, EventArgs e)
@@ -55,6 +67,9 @@ namespace indkasd
             this.path_to_cycles.Enabled = false;
             this.choose_cycles.Enabled = false;
             curr_task = 5;
+            this.fcycles_label.Enabled = false;
+            this.path_to_cycles.Enabled = false;
+            this.choose_cycles.Enabled = false;
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -243,6 +258,11 @@ namespace indkasd
                     }    
             }
             return new_graph;
+        }
+
+        private void Задачи_Load(object sender, EventArgs e)
+        {
+
         }
 
         public Задачи()
