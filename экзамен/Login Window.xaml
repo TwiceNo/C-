@@ -1,0 +1,260 @@
+﻿<Window x:Class="WpfApp2.Login_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Вход" Height="450" Width="380"
+        AllowsTransparency="True" 
+        Background="Transparent"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FFDCE0D9"/>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="15,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#dce0d9"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="15"
+                            BorderThickness="1"
+                            BorderBrush="#dce0d9">
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="#29524a"/>
+                    <Setter Property="Background" Value="#dce0d9"/>
+                    <Setter Property="BorderBrush" Value="#C83E4D"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#29524a"/>
+                    <Setter Property="Background" Value="#dce0d9"/>
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid SnapsToDevicePixels="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="60*"/>
+            </Grid.RowDefinitions>
+
+
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <SolidColorBrush Color="#29524a"/>
+                </Border.Background>
+            </Border>
+
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock 
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    Text="Авторизуйтесь перед началом работы"
+                    FontSize="22"
+                    FontWeight="Light"
+                    FontFamily="Segoe UI"
+                    Foreground="#dce0d9"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" 
+                    Margin="40,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox 
+                        x:Name="username"
+                        Height="25"
+                        Width="255"
+                        Text ="Логин"
+                        FontSize="18"
+                        FontWeight="Light"
+                        FontFamily="Segoe UI"
+                        Foreground="#dce0d9"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        
+                        Opacity="0.8"
+                        Margin="50, 20, 0, 0"     
+                        CaretBrush="#FFDCE0D9"
+                        SelectionBrush="#FFB0BDB6"
+                     />
+
+                    <iconPacks:PackIconMaterial
+                        Kind="Account"
+                        Width="25"
+                        Height="25" 
+                        Margin="0,20,50,0"
+                        Foreground="#dce0d9"
+                        />
+                </StackPanel>
+
+                <Border
+                    Width="280"
+                    Margin="0,4,0,0"
+                    BorderThickness="0, 0, 0, 1"
+                    BorderBrush="#DCE0D9"
+                    Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <PasswordBox 
+                        x:Name="password"
+                        Height="25"
+                        Width="255"
+                        Password="Пароль"
+                        FontSize="18"
+                        FontWeight="Light"
+                        FontFamily="Segoe UI"
+                        Foreground="#dce0d9"
+                        Background="Transparent"
+                        Margin="50, 30, 0, 0"
+                        BorderThickness="0"
+                        Opacity="0.8" 
+                        CaretBrush="#FFDCE0D9"
+                        SelectionBrush="#FFB0BDB6"/>
+                    <iconPacks:PackIconMaterial
+                        Kind="FormTextboxPassword"
+                        Width="25"
+                        Height="25" 
+                        Margin="0,30,0,0"
+                        Foreground="#dce0d9"
+                        />
+
+                </StackPanel>
+
+
+                <Border
+                    Width="280"
+                    Margin="0,4,0,0"
+                    BorderThickness="0, 0, 0, 1"
+                    BorderBrush="#DCE0D9"
+                    Opacity="0.5"/>
+
+                <CheckBox 
+                    x:Name="stay"
+                    Content="Оставаться в системе"
+                    FontSize="16"
+                    FontWeight="Light"
+                    FontFamily="Segoe UI"
+                    Foreground="#dce0d9"
+                    Background="#B0BDB6"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="95,25,95,15" 
+                    Height="22" 
+                    BorderBrush="#DCE0D9" 
+                    Width="190" 
+                    BorderThickness="1" 
+                    Padding="15,-4,0,0"
+                    ToggleButton.Checked="stay_Checked"
+                    ToggleButton.Unchecked="stay_Unchecked"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Name="cancel"
+                        Content="Отмена"
+                        Height="30"
+                        Width="90"
+                        Margin="80, 10, 0, 0"
+                        Click="cancel_Click"/>
+                    <Button
+                        Name="login"
+                        Content="Войти"
+                        Height="30"
+                        Width="90"
+                        Margin="40, 10, 50, 0"
+                        Click="login_Click"/>
+                    
+                </StackPanel>
+
+                <TextBlock
+                    Text="Не знаете свой логин или пароль? Обратитесь к системному администратору."
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"
+                    FontSize="14"
+                    FontWeight="Light"
+                    FontFamily="Segoe UI"
+                    Foreground="#dce0d9"
+                    Background="Transparent"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Opacity="0.7"
+                    Margin="20,30,15,25"
+                    />
+
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
