@@ -15,36 +15,16 @@ namespace WpfApp2
     {
         App()
         {
-            Working_Environment window = new Working_Environment();
-            window.ShowDialog();
+            InitializeComponent();
         }
 
-        
+        [STAThread]
 
-
-        //bool done = false;
-
-        //App()
-        //{
-        //    while (!done)
-        //    {
-        //        main();
-        //        done = true;
-        //    }
-        //}
-
-        //[STAThread]
-
-        //static void main()
-        //{
-        //    Program program = new Program();
-
-
-        //    if (program.set_user())
-        //    {
-        //        program.show_greeting();
-        //        program.start_work_env();
-        //    }
-        //}
+        static void Main()
+        {
+            App app = new App();
+                var window = new MainWindow();
+                app.Run(window);
+        }
     }
 }

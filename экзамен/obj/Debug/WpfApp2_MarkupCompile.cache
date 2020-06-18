@@ -9,12 +9,12 @@ WpfApp2
 none
 false
 DEBUG;TRACE
-D:\repos\WpfApp2\App.xaml
-5704900586
 
-12-1202564268
-121756904195
-Greetings Window.xaml;Login Window.xaml;MessageBox.xaml;Styles.xaml;Working Environment.xaml;
+12-1581094763
+
+18-1581115670
+124-869430342
+App.xaml;AllRoutes.xaml;EditProfile.xaml;LastRoutes.xaml;Login Window.xaml;PageResources.xaml;Search.xaml;SellingWindow.xaml;SettingsWindow.xaml;Styles.xaml;UsersEdit.xaml;MainWindow.xaml;
 
 False
 

@@ -29,6 +29,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,18 +55,12 @@
     <ApplicationIcon>TN.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
-      <HintPath>packages\MahApps.Metro.IconPacks.Material.4.2.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro.IconPacks.Material, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
-      <HintPath>packages\MahApps.Metro.IconPacks.Material.4.2.0\lib\net47\MahApps.Metro.IconPacks.Material.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro.IconPacks.MaterialLight, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
-      <HintPath>packages\MahApps.Metro.IconPacks.MaterialLight.4.2.0\lib\net47\MahApps.Metro.IconPacks.MaterialLight.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data, Version=8.0.20.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,23 +75,47 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
+    <Compile Include="AllRoutes.xaml.cs">
+      <DependentUpon>AllRoutes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Current User.cs" />
-    <Compile Include="Greetings Window.xaml.cs">
-      <DependentUpon>Greetings Window.xaml</DependentUpon>
+    <Compile Include="EditProfile.xaml.cs">
+      <DependentUpon>EditProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox.xaml.cs">
-      <DependentUpon>MessageBox.xaml</DependentUpon>
+    <Compile Include="GeneralSettings.cs" />
+    <Compile Include="IInformationalPage.cs" />
+    <Compile Include="LastRoutes.xaml.cs">
+      <DependentUpon>LastRoutes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SellingWindow.xaml.cs">
+      <DependentUpon>SellingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
-    <Compile Include="Working Environment.xaml.cs">
-      <DependentUpon>Working Environment.xaml</DependentUpon>
+    <Compile Include="UsersEdit.xaml.cs">
+      <DependentUpon>UsersEdit.xaml</DependentUpon>
     </Compile>
-    <Page Include="Greetings Window.xaml">
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AllRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LastRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,7 +132,19 @@
       <DependentUpon>Login Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MessageBox.xaml">
+    <Page Include="PageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SellingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,7 +152,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Working Environment.xaml">
+    <Page Include="UsersEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,7 +179,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -166,6 +201,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TN.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro.IconPacks.MaterialLight">
+      <Version>4.2.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "jCKW/rc7Q9QZpJ/Kscpz6BxUOjjr5V+Lxq2APv8IG5qkfipaZyB1VrTciCO0gFLnEnBUihHb8SRAzgpe3fVpsA==",
+  "success": true,
+  "projectFilePath": "D:\\repos\\WpfApp2\\Automated Working Place.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ирина\\.nuget\\packages\\mahapps.metro.iconpacks.material\\4.2.0\\mahapps.metro.iconpacks.material.4.2.0.nupkg.sha512",
+    "C:\\Users\\Ирина\\.nuget\\packages\\mahapps.metro.iconpacks.materiallight\\4.2.0\\mahapps.metro.iconpacks.materiallight.4.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

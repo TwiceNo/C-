@@ -9,27 +9,52 @@ using MySql.Data.MySqlClient;
 
 namespace WpfApp2
 {
-    class Current_User
+    public class Current_User
     {
         public string login, password;
-        bool privileged;
+        public bool privileged;
 
-        public string surname, name, patronymic, nickname, photo;
-        int ticket_window;
+        public string surname, name, patronymic, photo;
+        public int ticket_window;
 
         public Current_User()
+        {
+            if (!File.Exists("temp\\usr.txt"))
+                log_in();
+            else
+                authorize();
+        }
+
+        private void log_in()
+        {
+            Login_Window window = new Login_Window();
+            window.ShowDialog();
+            if (window.connected)
+            {
+                get_user(window.login_text, window.password_text, window.privilege, window.check_stay);
+                get_extra_fields();
+            }
+        }
+
+        private void authorize()
         {
             string file = "temp\\usr.txt";
             StreamReader reader = new StreamReader(file);
 
-            login = reader.ReadLine();         
-            password = reader.ReadLine();         
+            login = reader.ReadLine();
+            password = reader.ReadLine();
 
-            get_priviledge();
             get_extra_fields();
+            get_priviledge();
         }
 
-        public Current_User(string login, string password, bool privilege, bool stay)
+        public void logout()
+        {
+            string file = "temp\\usr.txt";
+            File.Delete(file);
+        }
+
+        public void get_user(string login, string password, bool privilege, bool stay)
         {
             this.login = login;
             this.password = password;
@@ -45,13 +70,6 @@ namespace WpfApp2
             }
             get_extra_fields();
         }
-
-        public void logout()
-        {
-            string file = "temp\\usr.txt";
-            File.Delete(file);
-        }
-
 
         private void get_priviledge()
         {
@@ -83,8 +101,7 @@ namespace WpfApp2
 
             if (reader[3].ToString() != "") patronymic = reader[3].ToString();
             if (reader[4].ToString() != "") ticket_window = int.Parse(reader[4].ToString());
-            if (reader[5].ToString() != "") nickname = reader[5].ToString();
-            if (reader[6].ToString() != "") photo = reader[6].ToString();
+            if (reader[5].ToString() != "") photo = reader[5].ToString();
 
             db.connection.Close();
         }

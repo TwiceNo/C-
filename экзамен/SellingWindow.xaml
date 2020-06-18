@@ -1,0 +1,273 @@
+﻿<Window x:Class="WpfApp2.SellingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Продажа билетов" Height="450" Width="400"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF373E40"/>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="15,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#373E40"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            BorderBrush="#373E40">
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#F3F7F0"/>
+                    <Setter Property="Background" Value="#6B8880"/>
+                    <Setter Property="BorderBrush" Value="#6B8880"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="#4F5656"/>
+                </Trigger>
+
+
+            </Style.Triggers>
+
+        </Style>
+
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="405*"/>
+            <RowDefinition Height="64*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <StackPanel
+                Height="40">
+                <TextBlock
+                    Text="Продажа билетов"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="10"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Пункт отправления"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <ComboBox
+                        Height="30"
+                        Width="150"
+                        x:Name="departure"
+                        IsEditable="False"
+                        FontSize="14"
+                        ItemsSource="{Binding}"
+                        VerticalAlignment="Center"
+                        SelectionChanged="departure_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Пункт назначения"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <ComboBox
+                        Height="30"
+                        Width="150"
+                        x:Name="destination"
+                        IsEditable="False"
+                        ItemsSource="{Binding}"
+                        FontSize="14"
+                        VerticalAlignment="Center"
+                        SelectionChanged="destination_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Доступные рейсы"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <ComboBox
+                        Height="30"
+                        Width="150"
+                        x:Name="rout"
+                        IsEditable="False"
+                        FontSize="14"
+                        ToolTip="Формат: Время отпраления; Номер рейса; Состав; Рейс"
+                        ItemsSource="{Binding}"
+                        VerticalAlignment="Center"
+                        SelectionChanged="rout_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Тип вагона"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <ComboBox
+                        Height="30"
+                        Width="150"
+                        x:Name="carriage"
+                        IsEditable="False"
+                        FontSize="14"
+                        ItemsSource="{Binding}"
+                        VerticalAlignment="Center"
+                        SelectionChanged="carriage_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Количество билетов"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <TextBox
+                        Height="30"
+                        Width="150"
+                        x:Name="num"
+                        FontSize="14"
+                        VerticalAlignment="Center"
+                        GotKeyboardFocus="num_GotKeyboardFocus"
+                        PreviewTextInput="num_PreviewTextInput"
+                        TextChanged="num_TextChanged"
+                        LostKeyboardFocus="num_LostKeyboardFocus"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                        Width="150"
+                        Text="Стоимость"
+                        Margin="17"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+                <TextBox
+                        Height="30"
+                        Width="150"
+                        x:Name="sum"
+                        IsEnabled="False"
+                        FontSize="14"
+                        VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" >
+            <Button
+                x:Name="cancel"
+                FontSize="14"
+                Height="30"
+                Width="150"
+                Content="Отменить операцию"
+                Margin="20, 10, 20, 10"
+                Click="cancel_Click"/>
+            <Button
+                x:Name="confirm"
+                FontSize="14"
+                Height="30"
+                Width="150"
+                Content="Подтвердить"
+                Margin="20, 10, 20, 10"
+                Click="confirm_Click"/>
+        </StackPanel>
+
+        <Popup
+            PlacementTarget="{Binding ElementName=num}" 
+            Placement="Top"
+            Height="40"
+            Width="200"
+            AllowsTransparency="True"
+            x:Name="tickets_left">
+            <Border
+                Background="#F3F7F0"
+                BorderThickness="2"
+                BorderBrush="#A62639"
+                CornerRadius="10"
+                Opacity="0.9">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock
+                            x:Name="popup_text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#373E40"
+                            />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+        </Popup>
+        
+    </Grid>
+</Window>

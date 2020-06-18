@@ -109,7 +109,34 @@
                 <RowDefinition Height="60*"/>
             </Grid.RowDefinitions>
 
-
+            <Popup 
+                x:Name="error"
+                Height="50"
+                Width="300"
+                Placement="Center"
+                AllowsTransparency="True">
+                <Border
+                    Background="#F3F7F0"
+                    BorderThickness="2"
+                    BorderBrush="#A62639"
+                    CornerRadius="10"
+                    Opacity="0.9">
+                    <ContentPresenter>
+                        <ContentPresenter.Content>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="Неверный логин или пароль"
+                                FontSize="16"
+                                FontWeight="Light"
+                                Foreground="#373E40"
+                                />
+                        </ContentPresenter.Content>
+                    </ContentPresenter>
+                </Border>
+            </Popup>
+            
+            
             <Border CornerRadius="10" Grid.RowSpan="2">
                 <Border.Background>
                     <SolidColorBrush Color="#29524a"/>

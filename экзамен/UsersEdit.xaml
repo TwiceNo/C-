@@ -1,0 +1,67 @@
+﻿<Window x:Class="WpfApp2.UsersEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Все пользователи" Height="500" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="30" VerticalAlignment="Top">
+            <Menu
+                Background="#486D65"
+
+                DockPanel.Dock="Top">
+                <MenuItem
+                    x:Name="add"
+                    Click="add_Click"
+                    Header="Добавить" 
+                    Height="30"
+                    Icon="{iconPacks:MaterialLight Kind=PlusBox}"
+                    Style="{StaticResource MenuItemFlat}"/>
+                <MenuItem
+                    x:Name="delete"
+                    Click="delete_Click"
+                    Header="Удалить"
+                    Height="30"
+                    Icon="{iconPacks:MaterialLight Kind=Delete}"
+                    Style="{StaticResource MenuItemFlat}"/>
+                <MenuItem
+                    x:Name="edit"
+                    Click="edit_Click"
+                    Header="Редактировать"
+                    Height="30"
+                    Icon="{iconPacks:MaterialLight Kind=Pencil}"
+                    Style="{StaticResource MenuItemFlat}"/>
+            </Menu>
+        </DockPanel>
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Логин"
+                    Binding="{Binding [0]}"
+                    IsReadOnly="True"/>
+                <DataGridTextColumn
+                    Header="Фамилия"
+                    Binding="{Binding [1]}"/>
+                <DataGridTextColumn
+                    Header="Имя"
+                    Binding="{Binding [2]}"/>
+                <DataGridTextColumn
+                    Header="Отчество"
+                    Binding="{Binding [3]}"/>
+                <DataGridTextColumn
+                    Header="Касса"
+                    Binding="{Binding [4]}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

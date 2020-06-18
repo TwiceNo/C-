@@ -1,0 +1,315 @@
+﻿<Window x:Class="WpfApp2.EditProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Редактирование профиля" Height="450" Width="500">
+
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF373E40"/>
+        <Style x:Key="OptionMarkFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="15,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#373E40"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Background" Value="Transparent"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            BorderBrush="#373E40">
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="#29524a"/>
+                    <Setter Property="Background" Value="#B0BDB6"/>
+                    <Setter Property="BorderBrush" Value="#C83E4D"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#29524a"/>
+                    <Setter Property="Background" Value="#B0BDB6"/>
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
+        <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#FF707070"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#FFD9ECFF"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
+        <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <TextBlock
+                VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                x:Name="username"
+                TextWrapping="Wrap"
+                Text="username"
+                TextAlignment="Center"
+                FontSize="16"
+                Margin="20"/>
+
+            
+            <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <TextBlock
+                    Text="Фотография профиля"
+                    TextAlignment="Right"
+                    FontSize="14"
+                    Width="200"
+                    Margin="20,10,20,10"/>
+                <Button
+                    x:Name="browser"
+                    Content="Выбрать файл"
+                    FontSize="14"
+                    Height="30"
+                    Width="200"
+                    Margin="20, 0, 20, 0"
+                    Click="browser_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <TextBlock
+                    Text="Логин"
+                    TextAlignment="Right"
+                    FontSize="14"
+                    Width="200"
+                    Margin="20,10,20,10"/>
+                <TextBox
+                    x:Name="login"
+                    FontSize="14"
+                    Width="200"
+                    Margin="20,5,20,5"
+                    VerticalContentAlignment="Center"
+                    TextChanged="login_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Border
+                    BorderBrush="#A62639"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Margin="10">
+                    <StackPanel
+                        Margin="0,10,0,10">
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock
+                                Text="Пароль"
+                                TextAlignment="Right"
+                                FontSize="14"
+                                Width="200"
+                                Margin="10,10,20,10"/>
+                            <PasswordBox
+                                x:Name="password"
+                                FontSize="14"
+                                Width="200"
+                                Margin="20,5,20,5"
+                                VerticalContentAlignment="Center"
+                                PasswordChanged="password_PasswordChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock
+                                Text="Новый пароль"
+                                TextAlignment="Right"
+                                FontSize="14"
+                                Width="200"
+                                Margin="10,10,20,10"/>
+                            <PasswordBox
+                                x:Name="newpassword"
+                                FontSize="14"
+                                Width="200"
+                                Margin="20,5,20,5"
+                                VerticalContentAlignment="Center"
+                                PasswordChanged="newpassword_PasswordChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+                <Expander
+                    HorizontalAlignment="Center"
+                    Header="Расширенные настройки"
+                    HorizontalContentAlignment="Center"
+                    Margin="20,10,20,10"
+                    Width="350"
+                    FontSize="14"
+                    x:Name="extras">
+                    <Button 
+                        x:Name="user_edit"
+                        Margin="20,10,20,10"
+                        Width="300"
+                        Height="30"
+                        FontSize="14"
+                        Content="Редактировать базу данных пользователей"
+                        Click="user_edit_Click"/>
+                </Expander>
+                    
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button
+                    x:Name="cancel"
+                    Height="30"
+                    Width="100"
+                    Margin="20, 10, 50, 10"
+                    FontSize="14"
+                    Content="Отмена"
+                    Click="cancel_Click"/>
+                <Button
+                    x:Name="confirm"
+                    FontSize="14"
+                    Height="30"
+                    Width="100"
+                    Margin="50, 10, 20, 10"
+                    Content="Применить"
+                    Click="confirm_Click"/>
+            </StackPanel>
+        <Popup
+            PlacementTarget="{Binding ElementName=password}" 
+            Placement="Top"
+            Height="40"
+            Width="200"
+            AllowsTransparency="True"
+            x:Name="not_match">
+            <Border
+                Background="#F3F7F0"
+                BorderThickness="2"
+                BorderBrush="#A62639"
+                CornerRadius="10"
+                Opacity="0.9">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            Text="Пароли не совпадают!"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#373E40"
+                            />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+        </Popup>
+        <Popup
+            PlacementTarget="{Binding ElementName=newpassword}" 
+            Placement="Bottom"
+            Height="80"
+            Width="200"
+            AllowsTransparency="True"
+            x:Name="newpass">
+            <Border
+                Background="#F3F7F0"
+                BorderThickness="2"
+                BorderBrush="#A62639"
+                CornerRadius="10"
+                Opacity="0.9">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            Text="Неподходящий пароль: минимум 4 символа, буквы и/или цифры"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#373E40"
+                            Margin="10"
+                            />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+        </Popup>
+        <Popup
+            PlacementTarget="{Binding ElementName=login}" 
+            Placement="Top"
+            Height="80"
+            Width="200"
+            AllowsTransparency="True"
+            x:Name="login_check">
+            <Border
+                Background="#F3F7F0"
+                BorderThickness="2"
+                BorderBrush="#A62639"
+                CornerRadius="10"
+                Opacity="0.9">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock
+                            x:Name="login_popup_text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#373E40"
+                            Margin="10"
+                            />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

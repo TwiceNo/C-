@@ -18,11 +18,8 @@ D:\repos\WpfApp2\bin\Debug\System.Memory.dll
 D:\repos\WpfApp2\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\repos\WpfApp2\bin\Debug\System.Numerics.Vectors.dll
 D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.Core.pdb
-D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.Core.xml
 D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.Material.pdb
-D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.Material.xml
 D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.MaterialLight.pdb
-D:\repos\WpfApp2\bin\Debug\MahApps.Metro.IconPacks.MaterialLight.xml
 D:\repos\WpfApp2\bin\Debug\MySql.Data.xml
 D:\repos\WpfApp2\obj\Debug\WpfApp2.exe.config
 D:\repos\WpfApp2\obj\Debug\Login Window.g.cs
@@ -38,11 +35,23 @@ D:\repos\WpfApp2\obj\Debug\Automated Working Place.csproj.CopyComplete
 D:\repos\WpfApp2\obj\Debug\WpfApp2.exe
 D:\repos\WpfApp2\obj\Debug\WpfApp2.pdb
 D:\repos\WpfApp2\obj\Debug\Automated Working Place.csprojAssemblyReference.cache
-D:\repos\WpfApp2\obj\Debug\MessageBox.g.cs
-D:\repos\WpfApp2\obj\Debug\MessageBox.baml
-D:\repos\WpfApp2\obj\Debug\Greetings Window.g.cs
 D:\repos\WpfApp2\obj\Debug\Greetings Window.baml
-D:\repos\WpfApp2\obj\Debug\Working Environment.g.cs
-D:\repos\WpfApp2\obj\Debug\Working Environment.baml
 D:\repos\WpfApp2\obj\Debug\App.baml
 D:\repos\WpfApp2\obj\Debug\Styles.baml
+D:\repos\WpfApp2\obj\Debug\LastRoutes.g.cs
+D:\repos\WpfApp2\obj\Debug\LastRoutes.baml
+D:\repos\WpfApp2\obj\Debug\PageResources.baml
+D:\repos\WpfApp2\obj\Debug\AllRoutes.g.cs
+D:\repos\WpfApp2\obj\Debug\AllRoutes.baml
+D:\repos\WpfApp2\obj\Debug\SellingWindow.g.cs
+D:\repos\WpfApp2\obj\Debug\SellingWindow.baml
+D:\repos\WpfApp2\obj\Debug\SettingsWindow.g.cs
+D:\repos\WpfApp2\obj\Debug\SettingsWindow.baml
+D:\repos\WpfApp2\obj\Debug\EditProfile.g.cs
+D:\repos\WpfApp2\obj\Debug\EditProfile.baml
+D:\repos\WpfApp2\obj\Debug\UsersEdit.g.cs
+D:\repos\WpfApp2\obj\Debug\UsersEdit.baml
+D:\repos\WpfApp2\obj\Debug\Search.g.cs
+D:\repos\WpfApp2\obj\Debug\Search.baml
+D:\repos\WpfApp2\obj\Debug\MainWindow.g.cs
+D:\repos\WpfApp2\obj\Debug\MainWindow.baml

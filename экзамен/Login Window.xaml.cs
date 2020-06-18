@@ -33,16 +33,16 @@ namespace WpfApp2
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (this.error.IsOpen)
+                this.error.IsOpen = false;
+
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            login_text = username.Text;
-            password_text = password.Password;
-            connection_check(login_text, password_text);
-           
+            connection_check(username.Text, password.Password);
         }
 
         private void stay_Checked(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace WpfApp2
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             connected = false;
-            this.Close();
+            Close();
         }
 
         private void connection_check(string login, string password)
@@ -77,16 +77,16 @@ namespace WpfApp2
             {
                 if (bool.TryParse(reader[0].ToString(), out bool temp))
                 {
-                    privilege = temp;
-                    connected = true;
-                    this.Close();
+                    this.privilege = temp;
+                    this.connected = true;
+                    this.login_text = login;
+                    this.password_text = password;
+                    Close();
                 }
             }
             catch
             {
-                MessageBox error = new MessageBox("Ошибка", "Неверный логин или пароль");
-                error.Owner = this;
-                error.ShowDialog();
+                this.error.IsOpen = true;
                 connected = false;
             }
 
