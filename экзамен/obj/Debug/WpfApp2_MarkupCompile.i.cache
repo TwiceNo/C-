@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-12-1581094763
+131872630961
 
-191871492259
+20-1863299974
 20-596286025
-App.xaml;AllRoutes.xaml;EditProfile.xaml;LastRoutes.xaml;Login Window.xaml;PageResources.xaml;Search.xaml;SellingWindow.xaml;SettingsWindow.xaml;Styles.xaml;UsersEdit.xaml;MainWindow.xaml;
+App.xaml;AllRoutes.xaml;EditProfile.xaml;ItemChange.xaml;LastRoutes.xaml;Login Window.xaml;PageResources.xaml;Search.xaml;SellingWindow.xaml;SettingsWindow.xaml;Styles.xaml;UsersEdit.xaml;MainWindow.xaml;
 
-False
+True
 

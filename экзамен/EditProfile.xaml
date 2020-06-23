@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Редактирование профиля" Height="450" Width="500">
+        Title="Редактирование профиля" Height="370" Width="500">
 
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -100,8 +100,9 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0">
-            <TextBlock
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <TextBlock
                 VerticalAlignment="Stretch" HorizontalAlignment="Center"
                 x:Name="username"
                 TextWrapping="Wrap"
@@ -110,16 +111,16 @@
                 FontSize="16"
                 Margin="20"/>
 
-            
-            <StackPanel Orientation="Horizontal"
+
+                <StackPanel Orientation="Horizontal"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <TextBlock
+                    <TextBlock
                     Text="Фотография профиля"
                     TextAlignment="Right"
                     FontSize="14"
                     Width="200"
                     Margin="20,10,20,10"/>
-                <Button
+                    <Button
                     x:Name="browser"
                     Content="Выбрать файл"
                     FontSize="14"
@@ -127,67 +128,67 @@
                     Width="200"
                     Margin="20, 0, 20, 0"
                     Click="browser_Click"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <TextBlock
+                    <TextBlock
                     Text="Логин"
                     TextAlignment="Right"
                     FontSize="14"
                     Width="200"
                     Margin="20,10,20,10"/>
-                <TextBox
+                    <TextBox
                     x:Name="login"
                     FontSize="14"
                     Width="200"
                     Margin="20,5,20,5"
                     VerticalContentAlignment="Center"
                     TextChanged="login_TextChanged"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <Border
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Border
                     BorderBrush="#A62639"
                     BorderThickness="1"
                     CornerRadius="10"
                     Margin="10">
-                    <StackPanel
+                        <StackPanel
                         Margin="0,10,0,10">
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock
+                                <TextBlock
                                 Text="Пароль"
                                 TextAlignment="Right"
                                 FontSize="14"
                                 Width="200"
                                 Margin="10,10,20,10"/>
-                            <PasswordBox
+                                <PasswordBox
                                 x:Name="password"
                                 FontSize="14"
                                 Width="200"
                                 Margin="20,5,20,5"
                                 VerticalContentAlignment="Center"
                                 PasswordChanged="password_PasswordChanged"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock
+                                <TextBlock
                                 Text="Новый пароль"
                                 TextAlignment="Right"
                                 FontSize="14"
                                 Width="200"
                                 Margin="10,10,20,10"/>
-                            <PasswordBox
+                                <PasswordBox
                                 x:Name="newpassword"
                                 FontSize="14"
                                 Width="200"
                                 Margin="20,5,20,5"
                                 VerticalContentAlignment="Center"
                                 PasswordChanged="newpassword_PasswordChanged"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Border>
-                
-                <Expander
+                    </Border>
+
+                    <Expander
                     HorizontalAlignment="Center"
                     Header="Расширенные настройки"
                     HorizontalContentAlignment="Center"
@@ -195,7 +196,7 @@
                     Width="350"
                     FontSize="14"
                     x:Name="extras">
-                    <Button 
+                        <Button 
                         x:Name="user_edit"
                         Margin="20,10,20,10"
                         Width="300"
@@ -203,10 +204,12 @@
                         FontSize="14"
                         Content="Редактировать базу данных пользователей"
                         Click="user_edit_Click"/>
-                </Expander>
-                    
+                    </Expander>
+
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
+        
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button
                     x:Name="cancel"

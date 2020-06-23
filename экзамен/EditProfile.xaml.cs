@@ -49,7 +49,8 @@ namespace WpfApp2
             {
                 path = browse.FileName;
                 name = browse.SafeFileName;
-                delegates.Add(change_photo);
+                if (!delegates.Contains(change_photo))
+                    delegates.Add(change_photo);
             }
         }
 
@@ -70,9 +71,9 @@ namespace WpfApp2
                 MessageBox.Show("Не все данные введены корректно", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                delegates.Distinct();
                 foreach (Action item in delegates)
                     item.Invoke();
+                user.write_down();
                 this.Close();
             }
         }
@@ -83,7 +84,8 @@ namespace WpfApp2
                 this.newpass.IsOpen = true;
             else this.newpass.IsOpen = false;
 
-            delegates.Add(change_password);
+            if(!delegates.Contains(change_password))
+                delegates.Add(change_password);
         }
 
         private void password_PasswordChanged(object sender, RoutedEventArgs e)
@@ -103,7 +105,8 @@ namespace WpfApp2
                 this.login_check.IsOpen = true;
             else this.login_check.IsOpen = false;
 
-            delegates.Add(change_login);
+            if (!delegates.Contains(change_login))
+                delegates.Add(change_login);
         }
 
         private void copy_photo()
@@ -202,12 +205,12 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
             comm.CommandText = "UPDATE users SET password = ?np WHERE login = ?cl";
-            comm.Parameters.AddWithValue("?nl", this.password.Password);
+            comm.Parameters.AddWithValue("?np", this.newpassword.Password);
             comm.Parameters.AddWithValue("?cl", user.login);
             comm.ExecuteNonQuery();
             db.connection.Close();
 
-            user.password = this.password.Password;
+            user.password = this.newpassword.Password;
         }
 
         private void change_photo()

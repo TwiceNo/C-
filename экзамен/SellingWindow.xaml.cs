@@ -265,6 +265,8 @@ namespace WpfApp2
             this.destination.IsEnabled = true;
             initialize_dest();
 
+            if (this.num.Text.Length > 0) calculate_sum(int.Parse(this.num.Text));
+
         }
 
         private void destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -272,6 +274,8 @@ namespace WpfApp2
             curr_rout.destination = this.destination.SelectedItem.ToString();
             this.rout.IsEnabled = true;
             initialize_rout();
+
+            if (this.num.Text.Length > 0) calculate_sum(int.Parse(this.num.Text));
 
         }
 
@@ -286,14 +290,18 @@ namespace WpfApp2
             this.carriage.IsEnabled = true;
             initialize_carr();
 
+            if (this.num.Text.Length > 0) calculate_sum(int.Parse(this.num.Text));
         }
 
         private void carriage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             curr_rout.type = get_carriage_type(this.carriage.SelectedItem.ToString());
+            
             this.num.IsEnabled = true;
             initialize_numt();
             this.confirm.IsEnabled = true;
+
+            if (this.num.Text.Length > 0) calculate_sum(int.Parse(this.num.Text));
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
@@ -381,12 +389,13 @@ namespace WpfApp2
 
             try
             {
-                float total = num * float.Parse(comm.ExecuteScalar().ToString());
+                float cost = float.Parse(comm.ExecuteScalar().ToString());
+                float total = num * cost;
                 this.sum.Text = total.ToString();
             }
             catch
             {
-
+                this.sum.Text = null;
             }
         }
 

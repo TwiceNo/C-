@@ -19,7 +19,7 @@ namespace WpfApp2
 
         public Current_User()
         {
-            if (!File.Exists("temp\\usr.txt"))
+            if (!File.Exists("temp\\user.txt"))
                 log_in();
             else
                 authorize();
@@ -32,20 +32,28 @@ namespace WpfApp2
             if (window.connected)
             {
                 get_user(window.login_text, window.password_text, window.privilege, window.check_stay);
-                get_extra_fields();
             }
         }
 
         private void authorize()
         {
-            string file = "temp\\usr.txt";
+            string file = "temp\\user.txt";
             StreamReader reader = new StreamReader(file);
 
             login = reader.ReadLine();
             password = reader.ReadLine();
 
-            get_extra_fields();
-            get_priviledge();
+            reader.Close();
+            try
+            {
+                get_extra_fields();
+                get_priviledge();
+            }
+            catch
+            {
+                logout();
+                log_in();
+            }
         }
 
         public void logout()
@@ -61,13 +69,7 @@ namespace WpfApp2
             this.privileged = privilege;
 
             if (stay)
-            {
-                string file = "temp\\usr.txt";
-                StreamWriter writer = new StreamWriter(file, false);
-                writer.WriteLine(login);
-                writer.WriteLine(password);
-                writer.Close();
-            }
+                write_down();
             get_extra_fields();
         }
 
@@ -104,6 +106,13 @@ namespace WpfApp2
             if (reader[5].ToString() != "") photo = reader[5].ToString();
 
             db.connection.Close();
+        }
+
+        public void write_down()
+        {
+            if (!Directory.Exists("temp\\"))
+                Directory.CreateDirectory("temp\\");
+            File.WriteAllLines("temp\\user.txt", new string[2] { login, password });
         }
     }
 }

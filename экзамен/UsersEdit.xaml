@@ -6,36 +6,36 @@
         xmlns:local="clr-namespace:WpfApp2"
                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Все пользователи" Height="500" Width="400">
+        Title="Все пользователи" Height="500" Width="440">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel Height="30" VerticalAlignment="Top">
+        <DockPanel Height="40" VerticalAlignment="Top">
             <Menu
                 Background="#486D65"
-
+                x:Name="menu"
                 DockPanel.Dock="Top">
                 <MenuItem
                     x:Name="add"
                     Click="add_Click"
                     Header="Добавить" 
-                    Height="30"
+                    Height="40"
                     Icon="{iconPacks:MaterialLight Kind=PlusBox}"
                     Style="{StaticResource MenuItemFlat}"/>
                 <MenuItem
                     x:Name="delete"
                     Click="delete_Click"
                     Header="Удалить"
-                    Height="30"
+                    Height="40"
                     Icon="{iconPacks:MaterialLight Kind=Delete}"
                     Style="{StaticResource MenuItemFlat}"/>
                 <MenuItem
                     x:Name="edit"
                     Click="edit_Click"
                     Header="Редактировать"
-                    Height="30"
+                    Height="40"
                     Icon="{iconPacks:MaterialLight Kind=Pencil}"
                     Style="{StaticResource MenuItemFlat}"/>
             </Menu>
@@ -43,25 +43,66 @@
         <DataGrid Grid.Row="1"
                   AutoGenerateColumns="False"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding}">
+                  ItemsSource="{Binding}"
+                  SelectedItem="{Binding Path=items}"
+                  IsReadOnly="True"
+                  x:Name="datagrid">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Логин"
+                    Width="50"
+                    CanUserResize="True"
                     Binding="{Binding [0]}"
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="Фамилия"
+                    Width="110"
+                    CanUserResize="True"
                     Binding="{Binding [1]}"/>
                 <DataGridTextColumn
                     Header="Имя"
+                    CanUserResize="True"
+                    Width="110"
                     Binding="{Binding [2]}"/>
                 <DataGridTextColumn
                     Header="Отчество"
+                    CanUserResize="True"
+                    Width="110"
                     Binding="{Binding [3]}"/>
                 <DataGridTextColumn
                     Header="Касса"
+                    CanUserResize="True"
+                    Width="50"
                     Binding="{Binding [4]}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Popup
+            PlacementTarget="{Binding ElementName=menu}" 
+            Placement="Bottom"
+            Height="40"
+            Width="200"
+            AllowsTransparency="True"
+            x:Name="popup">
+            <Border
+                Background="#F3F7F0"
+                BorderThickness="2"
+                BorderBrush="#A62639"
+                CornerRadius="10"
+                Opacity="0.9">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock
+                            x:Name="popup_text"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#373E40"
+                            />
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+        </Popup>
     </Grid>
 </Window>

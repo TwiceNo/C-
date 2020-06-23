@@ -31,7 +31,10 @@ namespace WpfApp2
             InitializeComponent();
             if (initialize_user())
             {
+                this.Title = "Касса " + user.ticket_window;
                 this.username.Text = String.Join(" ", new string[2] { user.name, user.patronymic });
+                if (user.photo != null)
+                    this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
                 gen_settings = new GeneralSettings();
                 AllRoutes page = new AllRoutes();
                 this.Page.Navigate(page);
@@ -129,8 +132,8 @@ namespace WpfApp2
 
         private void logout_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             user.logout();
+            this.Close();
         }
     }
 }

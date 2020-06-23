@@ -88,6 +88,9 @@
     </Compile>
     <Compile Include="GeneralSettings.cs" />
     <Compile Include="IInformationalPage.cs" />
+    <Compile Include="ItemChange.xaml.cs">
+      <DependentUpon>ItemChange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LastRoutes.xaml.cs">
       <DependentUpon>LastRoutes.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

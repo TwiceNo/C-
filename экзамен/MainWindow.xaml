@@ -6,8 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        Title="АРМ" Height="450" Width="800"
+        mc:Ignorable="d" Height="450" Width="800"
         Closing="Window_Closing">
 
 
@@ -254,6 +253,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Width="150"
+                                    Background="Transparent"
                                 ToolTip="Просмотреть все рейсы и маршруты"
                                 MouseLeftButtonDown="all_routes_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterial 
@@ -280,6 +280,7 @@
                                 Height="40"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
+                                    Background="Transparent"
                                 ToolTip="Просмотреть все доступные рейсы на сегодня"
                                 MouseLeftButtonDown="last_routes_MouseLeftButtonDown" Width="188">
                                     <iconPacks:PackIconMaterialLight 
@@ -305,6 +306,7 @@
                                 Height="40"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
+                                    Background="Transparent"
                                 ToolTip="Сводка о проданных билетах за сегодня"
                                 MouseLeftButtonDown="summary_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterialLight 
@@ -329,6 +331,7 @@
                                 Height="40"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
+                                    Background="Transparent"
                                 ToolTip="Найти подходящий рейс"
                                 MouseLeftButtonDown="search_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterialLight 
