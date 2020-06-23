@@ -43,6 +43,8 @@ namespace WpfApp2
             Database db = new Database();
             db.connection.Open();
 
+            // выбор всех еще не ушедших рейсов
+
             MySqlCommand comm = db.connection.CreateCommand();
             comm.CommandText = "SELECT arrivalH, arrivalM, train, flight, `departure point`, destination, departureH, departureM " +
                 "FROM `traffic`.`all traffic` " +
@@ -56,6 +58,8 @@ namespace WpfApp2
             {
                 string[] row = new string[5];
                 bool arrives = false;
+
+                // определение статуса рейса - отправляется или прибывает
 
                 if ((int.Parse(reader[0].ToString()) > int.Parse(hour))
                     || (int.Parse(reader[0].ToString()) == int.Parse(hour)

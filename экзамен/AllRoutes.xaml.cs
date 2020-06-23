@@ -45,7 +45,7 @@ namespace WpfApp2
             Database db = new Database();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "SELECT DISTINCT flight, `departure point`, destination FROM `all traffic`";
+            comm.CommandText = "SELECT DISTINCT flight, `departure point`, destination FROM `all traffic`";     // чтение всех различных рейсов
             MySqlDataReader reader = comm.ExecuteReader();
 
             while(reader.Read())
@@ -66,7 +66,7 @@ namespace WpfApp2
             Database db = new Database();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "SELECT station, `travel time`, `stop time` FROM rout WHERE flight = ?f ORDER BY id";
+            comm.CommandText = "SELECT station, `travel time`, `stop time` FROM rout WHERE flight = ?f ORDER BY id";    // выбор всех остановок рейса
             comm.Parameters.AddWithValue("?f", flight[0]);
             MySqlDataReader reader = comm.ExecuteReader();
 
@@ -82,9 +82,8 @@ namespace WpfApp2
         }
 
 
-        private void add_items(string[] rout, List<station> stations)
+        private void add_items(string[] rout, List<station> stations)   // добавление данных в tree view 
         {
-            
             TreeViewItem header = new TreeViewItem();
             header.Header = rout[1];
             foreach(station s in stations)

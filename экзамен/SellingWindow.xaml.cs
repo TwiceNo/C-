@@ -82,7 +82,7 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
 
-            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";
+            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";       // выборка рейсов, включающих пункт отправления
             comm.Parameters.AddWithValue("?s", dep);
 
             MySqlDataReader reader = comm.ExecuteReader();
@@ -98,7 +98,7 @@ namespace WpfApp2
                 db.connection.Open();
                 MySqlCommand command = db.connection.CreateCommand();
 
-                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id > ?id";
+                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id > ?id";    // выборка всех остановок, куда можно добраться текущим рейсом
                 command.Parameters.AddWithValue("?f", prob[0]);
                 command.Parameters.AddWithValue("?id", prob[1]);
 
@@ -128,7 +128,7 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
 
-            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";
+            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";        // посик рейса, включающего пункт отправления и его id
             comm.Parameters.AddWithValue("?s", curr_rout.departure);
             MySqlDataReader reader = comm.ExecuteReader();
 
@@ -144,7 +144,7 @@ namespace WpfApp2
                     db.connection.Open();
                     MySqlCommand cmd = db.connection.CreateCommand();
 
-                    cmd.CommandText = "SELECT id FROM rout WHERE station = ?d AND flight = ?f AND id > ?id";
+                    cmd.CommandText = "SELECT id FROM rout WHERE station = ?d AND flight = ?f AND id > ?id";    // проверка возможности добраться в пункт назначения текущим рейсом
                     cmd.Parameters.AddWithValue("?d", curr_rout.destination);
                     cmd.Parameters.AddWithValue("?f", prob[i][0]);
                     cmd.Parameters.AddWithValue("?id", prob[i][1]);
@@ -159,9 +159,9 @@ namespace WpfApp2
                         db.connection.Open();
                         MySqlCommand command = db.connection.CreateCommand();
 
-                        command.CommandText = "SELECT departureH, departureM, `departure point`, destination, train FROM `all traffic` " +
+                        command.CommandText = "SELECT departureH, departureM, `departure point`, destination, train FROM `all traffic` " +      // взятие данных о рейсе, если он еще доступен по времени
                         "WHERE flight = ?f AND `left` > 0 AND ((departureH > ?h) OR (departureH = ?h AND departureM > ?m))" +
-                        " ORDER BY departureH, departureM";
+                        " ORDER BY departureH, departureM";                                                                                     
                         command.Parameters.AddWithValue("?f", prob[i][0]);
                         command.Parameters.AddWithValue("?h", hour);
                         command.Parameters.AddWithValue("?m", minute);
@@ -197,7 +197,7 @@ namespace WpfApp2
             MySqlCommand comm = db.connection.CreateCommand();
 
             comm.CommandText = "SELECT type FROM trains " +
-                "WHERE departureH = ?h AND departureM = ?m AND flight = ?f AND train = ?t AND `left` > 0 " +
+                "WHERE departureH = ?h AND departureM = ?m AND flight = ?f AND train = ?t AND `left` > 0 " +        // определение доступных вагонов (их типов)
                 "ORDER BY type";
             comm.Parameters.AddWithValue("?h", curr_rout.dH);
             comm.Parameters.AddWithValue("?m", curr_rout.dM);
@@ -233,7 +233,7 @@ namespace WpfApp2
             MySqlCommand comm = db.connection.CreateCommand();
 
             comm.CommandText = "SELECT `left` FROM trains " +
-                "WHERE departureH = ?h AND departureM = ?m AND flight = ?f AND train = ?t AND `left` > 0 AND type = ?ty " +
+                "WHERE departureH = ?h AND departureM = ?m AND flight = ?f AND train = ?t AND `left` > 0 AND type = ?ty " +     // определение количества доступных билетов
                 "ORDER BY type";
             comm.Parameters.AddWithValue("?h", curr_rout.dH);
             comm.Parameters.AddWithValue("?m", curr_rout.dM);

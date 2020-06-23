@@ -16,7 +16,8 @@
             <Menu
                 Background="#486D65"
                 x:Name="menu"
-                DockPanel.Dock="Top">
+                DockPanel.Dock="Top"
+                Cursor="Hand">
                 <MenuItem
                     x:Name="add"
                     Click="add_Click"
@@ -50,29 +51,24 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Header="Логин"
-                    Width="50"
                     CanUserResize="True"
                     Binding="{Binding [0]}"
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="Фамилия"
-                    Width="110"
                     CanUserResize="True"
                     Binding="{Binding [1]}"/>
                 <DataGridTextColumn
                     Header="Имя"
                     CanUserResize="True"
-                    Width="110"
                     Binding="{Binding [2]}"/>
                 <DataGridTextColumn
                     Header="Отчество"
                     CanUserResize="True"
-                    Width="110"
                     Binding="{Binding [3]}"/>
                 <DataGridTextColumn
                     Header="Касса"
                     CanUserResize="True"
-                    Width="50"
                     Binding="{Binding [4]}"/>
             </DataGrid.Columns>
         </DataGrid>

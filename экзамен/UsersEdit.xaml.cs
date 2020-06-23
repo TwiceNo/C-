@@ -66,7 +66,7 @@ namespace WpfApp2
         }
 
 
-        private void initialize_items()
+        private void initialize_items()     // чтение данных обо всех пользователях
         {
             items = new List<string[]>();
 
@@ -84,7 +84,7 @@ namespace WpfApp2
                     reader[4].ToString()});
             db.connection.Close();
 
-            this.datagrid.ItemsSource = items;
+            this.datagrid.ItemsSource = items;      // связывание с data grid
         }
 
         private void update(int index)

@@ -24,7 +24,7 @@ namespace WpfApp2
     public partial class EditProfile : Window
     {
         public Current_User user;
-        List<Action> delegates;         // список делегатов, которые будут вызваны для изсенения данных
+        List<Action> delegates;         // список делегатов, которые будут вызваны для изменения данных
         string path, name;
 
         public EditProfile(Current_User user)
@@ -41,7 +41,7 @@ namespace WpfApp2
             this.newpassword.IsEnabled = false;
         }
 
-        private void browser_Click(object sender, RoutedEventArgs e)
+        private void browser_Click(object sender, RoutedEventArgs e)        // для смены иконки потребуется перезапуск программы
         {
             OpenFileDialog browse = new OpenFileDialog();
             browse.Filter = "Изображения (*.jpeg; *.jpg; *.png)|*.jpeg; *.jpg; *.png";
@@ -88,7 +88,7 @@ namespace WpfApp2
                 delegates.Add(change_password);
         }
 
-        private void password_PasswordChanged(object sender, RoutedEventArgs e)
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)     // новый пароль может быть установлен только при введенном старом
         {
             if (!password_check())
                 this.not_match.IsOpen = true;
@@ -109,7 +109,7 @@ namespace WpfApp2
                 delegates.Add(change_login);
         }
 
-        private void copy_photo()
+        private void copy_photo()       // копирует пользовательскую картинку в папку на сервере и обновляет данные в бд
         {
             delete_photo();
             string new_path = "z:\\user_photos\\" + path.Replace(name, user.login).Substring(path.LastIndexOf('\\'));
@@ -158,14 +158,14 @@ namespace WpfApp2
             if (some.Length < 4) return false;
             else
             {
-                List<string> restricted = new List<string>() { " ", "\"", "\\", "\'", "`" };
+                List<string> restricted = new List<string>() { " ", "\"", "\\", "\'", "`" };    // запрещены символы, которые могут быть неверно интерпретированы
                 foreach (string item in restricted)
                     if (some.Contains(item)) return false;
                 return true;
             }
         }
 
-        private bool unique_check()
+        private bool unique_check()     // проверка на уникальность логина
         {
             Users db = new Users();
             db.connection.Open();

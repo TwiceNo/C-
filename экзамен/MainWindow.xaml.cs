@@ -29,12 +29,13 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            if (initialize_user())
+            if (initialize_user())      // инициализация пользователя
             {
                 this.Title = "Касса " + user.ticket_window;
                 this.username.Text = String.Join(" ", new string[2] { user.name, user.patronymic });
                 if (user.photo != null)
                     this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
+
                 gen_settings = new GeneralSettings();
                 AllRoutes page = new AllRoutes();
                 this.Page.Navigate(page);
@@ -45,7 +46,8 @@ namespace WpfApp2
 
         private void credits_Click(object sender, RoutedEventArgs e)
         {
-
+            CreditsWindow window = new CreditsWindow();
+            window.Show();
         }
 
         private void SideMenuSwitcher_MouseDown(object sender, MouseButtonEventArgs e)

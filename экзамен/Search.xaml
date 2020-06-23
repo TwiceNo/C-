@@ -137,7 +137,8 @@
                         FontSize="14"
                         Margin="20"
                         HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"
+                        SelectionChanged="to_SelectionChanged"/>
                 <Button 
                         x:Name="start" 
                         Content="Найти"
@@ -146,7 +147,8 @@
                         Width="80"
                         Margin="20"
                         Click="start_Click"
-                        HorizontalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch"
+                        Cursor="Hand"
                         VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>

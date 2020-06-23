@@ -21,11 +21,14 @@ namespace WpfApp2
     /// </summary>
     public partial class Search : Page
     {
+        string dep, des;
+
         public Search()
         {
             InitializeComponent();
             initialize_from();
             this.to.IsEnabled = false;
+            
         }
 
         private void initialize_from()
@@ -38,7 +41,7 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
 
-            comm.CommandText = "SELECT DISTINCT flight FROM rout";
+            comm.CommandText = "SELECT DISTINCT flight FROM rout";      // выборка всех различных рейсов
             MySqlDataReader reader = comm.ExecuteReader();
 
             while (reader.Read())
@@ -56,7 +59,7 @@ namespace WpfApp2
                 db.connection.Open();
                 MySqlCommand command = db.connection.CreateCommand();
 
-                command.CommandText = "SELECT id FROM rout WHERE flight = ?f ORDER BY id DESC";
+                command.CommandText = "SELECT id FROM rout WHERE flight = ?f ORDER BY id DESC";     // получение конечного числа остановок для текущего рейса
                 command.Parameters.AddWithValue("?f", flight[0]);
 
                 flight[1] = command.ExecuteScalar().ToString();
@@ -66,7 +69,7 @@ namespace WpfApp2
 
                 db.connection.Open();
 
-                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id < ?id";
+                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id < ?id";    // выборка всех не конечных станций для текущего рейса
                 command.Parameters.AddWithValue("?id", flight[1]);
 
                 reader = command.ExecuteReader();
@@ -93,7 +96,7 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
 
-            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";
+            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";        // рейс и номер остановки, от которой будет отправление
             comm.Parameters.AddWithValue("?s", dep);
 
             MySqlDataReader reader = comm.ExecuteReader();
@@ -109,7 +112,7 @@ namespace WpfApp2
                 db.connection.Open();
                 MySqlCommand command = db.connection.CreateCommand();
 
-                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id > ?id";
+                command.CommandText = "SELECT station FROM rout WHERE flight = ?f AND id > ?id";        // выборка возможных станций, куда можно добраться от текущей остановки
                 command.Parameters.AddWithValue("?f", prob[0]);
                 command.Parameters.AddWithValue("?id", prob[1]);
 
@@ -136,8 +139,8 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
 
-            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";
-            comm.Parameters.AddWithValue("?s", this.from.SelectedItem.ToString());
+            comm.CommandText = "SELECT flight, id FROM rout WHERE station = ?s";        // рейс и номер остановки, от которой будет отправление
+            comm.Parameters.AddWithValue("?s", dep);
             MySqlDataReader reader = comm.ExecuteReader();
 
             while (reader.Read())
@@ -152,7 +155,7 @@ namespace WpfApp2
                     db.connection.Open();
                     MySqlCommand command = db.connection.CreateCommand();
 
-                    command.CommandText = "SELECT `departure point`, destination FROM `all traffic` WHERE flight = ?f";
+                    command.CommandText = "SELECT `departure point`, destination FROM `all traffic` WHERE flight = ?f";         // получить газвание маршрута
                     command.Parameters.AddWithValue("?f", prob[i][0]);
                     reader = command.ExecuteReader();
                     reader.Read();
@@ -160,8 +163,8 @@ namespace WpfApp2
                     db.connection.Close();
 
                     db.connection.Open();
-                    command.CommandText = "SELECT id FROM rout WHERE station = ?d AND flight = ?f AND id > ?id";
-                    command.Parameters.AddWithValue("?d", this.to.SelectedItem.ToString());
+                    command.CommandText = "SELECT id FROM rout WHERE station = ?d AND flight = ?f AND id > ?id";        // проверка направления маршрута - индекс des должен быть больше
+                    command.Parameters.AddWithValue("?d", des);
                     command.Parameters.AddWithValue("?id", prob[i][1]);
 
                     MySqlDataReader read = command.ExecuteReader();
@@ -172,7 +175,9 @@ namespace WpfApp2
                         db = new Database();
                         db.connection.Open();
                         MySqlCommand cmd = db.connection.CreateCommand();
-                        cmd.CommandText = "SELECT `travel time`, `stop time` FROM rout WHERE flight = ?f AND id > ?id AND id < ?id2";
+                        cmd.CommandText = "SELECT `travel time`, `stop time` FROM rout WHERE flight = ?f AND id > ?id AND id < ?id2";       // расчет времени путешествия
+                        cmd.Parameters.AddWithValue("?id", prob[i][1]);
+                        cmd.Parameters.AddWithValue("?f", prob[i][0]);
                         cmd.Parameters.AddWithValue("?id2", id);
 
                         reader = cmd.ExecuteReader();
@@ -197,9 +202,11 @@ namespace WpfApp2
                         db.connection.Close();
 
                         db.connection.Open();
-                        command.CommandText = "SELECT train, type, cost FROM rout WHERE flight = ?f AND departure = ?s AND destination = ?d";
-                        command.Parameters.AddWithValue("?s", this.from.SelectedItem.ToString());
-                        reader = command.ExecuteReader();
+                        cmd.CommandText = "SELECT train, type, cost FROM price WHERE rout = ?f AND departure = ?s AND destination = ?d";    // расчет стоимости
+                        cmd.Parameters.AddWithValue("?s", dep);
+                        cmd.Parameters.AddWithValue("?d", des);
+
+                        reader = cmd.ExecuteReader();
 
                         while (reader.Read())
                             possible.Add(new string[7] { prob[i][0], reader[0].ToString(), rout, (int.Parse(id) - int.Parse(prob[i][1])).ToString(),
@@ -229,9 +236,15 @@ namespace WpfApp2
             }
         }
 
+        private void to_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            des = this.to.SelectedItem.ToString();
+        }
+
         private void from_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.to.IsEnabled = true;
+            dep = this.from.SelectedItem.ToString();
             initialize_to();
         }
     }

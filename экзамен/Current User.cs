@@ -25,7 +25,7 @@ namespace WpfApp2
                 authorize();
         }
 
-        private void log_in()
+        private void log_in()       // авторизация через диалоговое окно
         {
             Login_Window window = new Login_Window();
             window.ShowDialog();
@@ -35,7 +35,7 @@ namespace WpfApp2
             }
         }
 
-        private void authorize()
+        private void authorize()        // авторизация из файла
         {
             string file = "temp\\user.txt";
             StreamReader reader = new StreamReader(file);
@@ -49,14 +49,14 @@ namespace WpfApp2
                 get_extra_fields();
                 get_priviledge();
             }
-            catch
+            catch       // если что-то пойдет не так
             {
                 logout();
                 log_in();
             }
         }
 
-        public void logout()
+        public void logout()    // удаление файла пользователя
         {
             string file = "temp\\usr.txt";
             File.Delete(file);
@@ -73,7 +73,7 @@ namespace WpfApp2
             get_extra_fields();
         }
 
-        private void get_priviledge()
+        private void get_priviledge()       // определение привилегий 
         {
             Users db = new Users();
             db.connection.Open();
@@ -87,7 +87,7 @@ namespace WpfApp2
             db.connection.Close();
         }
 
-        private void get_extra_fields()
+        private void get_extra_fields()     // взятие информации о пользователе
         {
             Users db = new Users();
             db.connection.Open();
@@ -100,6 +100,8 @@ namespace WpfApp2
 
             surname = reader[1].ToString();
             name = reader[2].ToString();
+
+            // некоторые поля таблицы не являются обязательными
 
             if (reader[3].ToString() != "") patronymic = reader[3].ToString();
             if (reader[4].ToString() != "") ticket_window = int.Parse(reader[4].ToString());

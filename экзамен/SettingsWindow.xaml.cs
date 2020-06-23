@@ -29,12 +29,14 @@ namespace WpfApp2
             initialize_content();
         }
 
-        private void initialize_content()
+        private void initialize_content()       // инициализация полей текущими настройками
         {
             this.path_s.Text = settings.path_s;
             this.path_t.Text = settings.path_t;
             this.save_tickets.IsChecked = settings.printable;
         }
+
+        // выбор папок
 
         private void browser_s_Click(object sender, RoutedEventArgs e)
         {

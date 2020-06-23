@@ -43,7 +43,7 @@ namespace WpfApp2
             initialize_fields();
         }
 
-        private void initialize_fields()
+        private void initialize_fields()        // заполнение полей данными пользователя
         {
             Users db = new Users();
             db.connection.Open();
@@ -98,7 +98,7 @@ namespace WpfApp2
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
 
-        private string generate()
+        private string generate()       // генерация логина
         {
             Users db = new Users();
             db.connection.Open();
@@ -123,8 +123,8 @@ namespace WpfApp2
             if (!update_mode)
                 add_all();
             else
-                foreach (Action action in delegates)
-                    action.Invoke();
+                foreach (Action action in delegates)        // при изменении полей в список заносятся соответетствующие делегаты 
+                    action.Invoke();                        // и выполняются по нажатию на кнопку подтверждения
             this.Close();
         }
 
@@ -157,14 +157,14 @@ namespace WpfApp2
             Users db = new Users();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "INSERT INTO users (login) VALUES (?l)";
+            comm.CommandText = "INSERT INTO users (login) VALUES (?l)";     // добавление в бд первичного ключа (пароль и привилегии выставляются по умолчанию)
             comm.Parameters.AddWithValue("?l", this.login);
             comm.ExecuteNonQuery();
             db.connection.Close();
 
             db.connection.Open();
             comm.CommandText = "INSERT INTO `personal data` (login, surname, name, patronymic, `ticket window`) " +
-                "VALUES (?l, ?s, ?n, ?p, ?t)";
+                "VALUES (?l, ?s, ?n, ?p, ?t)";                              // добавление информации о пользователе
             comm.Parameters.AddWithValue("?s", this.surname.Text);
             comm.Parameters.AddWithValue("?n", this.name.Text);
             comm.Parameters.AddWithValue("?p", this.patronymic.Text);

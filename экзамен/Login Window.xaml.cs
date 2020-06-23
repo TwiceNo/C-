@@ -31,7 +31,7 @@ namespace WpfApp2
             InitializeComponent();
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)    // возможность перемещать окно
         {
             if (this.error.IsOpen)
                 this.error.IsOpen = false;
@@ -61,7 +61,7 @@ namespace WpfApp2
             Close();
         }
 
-        private void connection_check(string login, string password)
+        private void connection_check(string login, string password)    // пытается найти соответствующего пользователя
         {
             Users db = new Users();
             db.connection.Open();
@@ -81,10 +81,10 @@ namespace WpfApp2
                     this.connected = true;
                     this.login_text = login;
                     this.password_text = password;
-                    Close();
+                    this.Close();
                 }
             }
-            catch
+            catch   // показ сообщения об ошибке
             {
                 this.error.IsOpen = true;
                 connected = false;

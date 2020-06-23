@@ -23,8 +23,8 @@ namespace WpfApp2
         static void Main()
         {
             App app = new App();
-                var window = new MainWindow();
-                app.Run(window);
+            var window = new MainWindow();
+            app.Run(window);
         }
     }
 }
