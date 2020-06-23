@@ -130,6 +130,7 @@
                             Header="О программе"
                             Icon="{iconPacks:MaterialLight Kind=Information}"
                             Style="{StaticResource MenuItemFlat}"
+                            Click="credits_Click"
                             />
                     </Menu>
 

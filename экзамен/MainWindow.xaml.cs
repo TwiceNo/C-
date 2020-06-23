@@ -47,6 +47,7 @@ namespace WpfApp2
         private void credits_Click(object sender, RoutedEventArgs e)
         {
             CreditsWindow window = new CreditsWindow();
+            window.Owner = this;
             window.Show();
         }
 
