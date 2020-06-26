@@ -24,7 +24,9 @@ namespace WpfApp2
         {
             App app = new App();
             var window = new MainWindow();
-            app.Run(window);
+            if (window.connected)
+                app.Run(window);
+            else Application.Current.Shutdown();
         }
     }
 }

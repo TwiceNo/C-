@@ -175,7 +175,7 @@ namespace WpfApp2
                         db = new Database();
                         db.connection.Open();
                         MySqlCommand cmd = db.connection.CreateCommand();
-                        cmd.CommandText = "SELECT `travel time`, `stop time` FROM rout WHERE flight = ?f AND id > ?id AND id < ?id2";       // расчет времени путешествия
+                        cmd.CommandText = "SELECT `travel time`, `stop time` FROM rout WHERE flight = ?f AND id > ?id AND id <= ?id2";       // расчет времени путешествия
                         cmd.Parameters.AddWithValue("?id", prob[i][1]);
                         cmd.Parameters.AddWithValue("?f", prob[i][0]);
                         cmd.Parameters.AddWithValue("?id2", id);

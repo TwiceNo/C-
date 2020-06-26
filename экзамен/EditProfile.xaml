@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Редактирование профиля" Height="370" Width="500"
+        Title="Редактирование профиля" Height="395" Width="520"
         KeyDown="Window_KeyDown">
 
     <Window.Resources>
@@ -101,7 +101,8 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer>
+        <ScrollViewer
+            x:Name="scroller">
             <StackPanel Orientation="Vertical" Grid.Row="0">
                 <TextBlock
                 VerticalAlignment="Stretch" HorizontalAlignment="Center"
@@ -154,6 +155,13 @@
                     Margin="10">
                         <StackPanel
                         Margin="0,10,0,10">
+                            <TextBlock 
+                                Text="Необходимо ввести старый пароль, прежде чем установить новый"
+                                Foreground="#A62639"
+                                TextWrapping="Wrap"
+                                FontSize="14"
+                                HorizontalAlignment="Center"
+                                Margin="10"/>
                             <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                 <TextBlock

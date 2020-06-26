@@ -22,7 +22,8 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool StateClosed = false;
+        public bool connected;
+        bool StateClosed = false; 
         Current_User user;
         GeneralSettings gen_settings;
         Dictionary<Key, Action> act;
@@ -37,10 +38,10 @@ namespace WpfApp2
                 this.username.Text = String.Join(" ", new string[2] { user.name, user.patronymic });
                 if (user.photo != null)
                     this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
-
+                this.connected = true;
                 gen_settings = new GeneralSettings();
             }
-            else this.Close();
+            else connected = false;
         }
 
 
@@ -65,7 +66,7 @@ namespace WpfApp2
         private bool initialize_user()
         {
             user = new Current_User();
-            if (user == null) return false;
+            if (user.login == null) return false;
             else return true;
         }
 

@@ -120,6 +120,7 @@
                         Width="200"
                         FontSize="14"
                         Margin="20"
+                        VerticalContentAlignment="Center"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Center"/>
                 <TextBlock 
@@ -136,6 +137,7 @@
                         Width="200"
                         FontSize="14"
                         Margin="20"
+                        VerticalContentAlignment="Center"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Center"
                         SelectionChanged="to_SelectionChanged"/>
@@ -155,18 +157,19 @@
         
         <DockPanel Grid.Row="1">
             <DataGrid
+                ToolTip="Время в пути: Дней:Часов:Минут"
                 DockPanel.Dock="Top"
                 x:Name="search_result"
                 AutoGenerateColumns="False"
                 ItemsSource="{Binding}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Рейс" Binding="{Binding [0]}"/>
-                    <DataGridTextColumn Header="Состав" Binding="{Binding [1]}"/>
-                    <DataGridTextColumn Header="Маршрут" Binding="{Binding [2]}"/>
-                    <DataGridTextColumn Header="Остановок в пути" Binding="{Binding [3]}"/>
-                    <DataGridTextColumn Header="Время в пути" Binding="{Binding [4]}"/>
-                    <DataGridTextColumn Header="Тип вагона" Binding="{Binding [5]}"/>
-                    <DataGridTextColumn Header="Стоимость" Binding="{Binding [6]}"/>
+                    <DataGridTextColumn Header="Рейс" FontSize="14" Binding="{Binding [0]}"/>
+                    <DataGridTextColumn Header="Состав" FontSize="14" Binding="{Binding [1]}"/>
+                    <DataGridTextColumn Header="Маршрут" FontSize="14" Binding="{Binding [2]}"/>
+                    <DataGridTextColumn Header="Остановок в пути" FontSize="14" Binding="{Binding [3]}"/>
+                    <DataGridTextColumn Header="Время в пути" FontSize="14" Binding="{Binding [4]}"/>
+                    <DataGridTextColumn Header="Тип вагона" FontSize="14" Binding="{Binding [5]}"/>
+                    <DataGridTextColumn Header="Стоимость" FontSize="14" Binding="{Binding [6]}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
