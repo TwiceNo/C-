@@ -1,3 +1,2 @@
 tickets\
-summary.txt
 True

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-14-118806875
+15-2127643971
 
-21-2131057406
+22-370905154
 20-596286025
-App.xaml;AllRoutes.xaml;CreditsWindow.xaml;EditProfile.xaml;ItemChange.xaml;LastRoutes.xaml;Login Window.xaml;PageResources.xaml;Search.xaml;SellingWindow.xaml;SettingsWindow.xaml;Styles.xaml;UsersEdit.xaml;MainWindow.xaml;
+App.xaml;AllRoutes.xaml;CreditsWindow.xaml;EditProfile.xaml;ItemChange.xaml;LastRoutes.xaml;Login Window.xaml;PageResources.xaml;Search.xaml;SellingWindow.xaml;SettingsWindow.xaml;Styles.xaml;Summary.xaml;UsersEdit.xaml;MainWindow.xaml;
 
 True
 

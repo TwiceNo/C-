@@ -60,6 +60,10 @@ namespace WpfApp2
             connected = false;
             Close();
         }
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
+        }
 
         private void connection_check(string login, string password)    // пытается найти соответствующего пользователя
         {

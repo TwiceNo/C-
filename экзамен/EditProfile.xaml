@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Редактирование профиля" Height="370" Width="500">
+        Title="Редактирование профиля" Height="370" Width="500"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <Style x:Key="FocusVisual">

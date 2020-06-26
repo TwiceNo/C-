@@ -38,14 +38,14 @@ namespace WpfApp2
         }
 
 
-        private List<string[]> read_routes()
+        private List<string[]> read_routes()        // чтение всех различных рейсов
         {
             List<string[]> routes = new List<string[]>();
 
             Database db = new Database();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "SELECT DISTINCT flight, `departure point`, destination FROM `all traffic`";     // чтение всех различных рейсов
+            comm.CommandText = "SELECT DISTINCT flight, `departure point`, destination FROM `all traffic`";     
             MySqlDataReader reader = comm.ExecuteReader();
 
             while(reader.Read())
@@ -60,13 +60,13 @@ namespace WpfApp2
         }
 
 
-        private List<station> get_stations(string[] flight)
+        private List<station> get_stations(string[] flight)     // выбор всех остановок рейса
         {
             List<station> rout = new List<station>();
             Database db = new Database();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "SELECT station, `travel time`, `stop time` FROM rout WHERE flight = ?f ORDER BY id";    // выбор всех остановок рейса
+            comm.CommandText = "SELECT station, `travel time`, `stop time` FROM rout WHERE flight = ?f ORDER BY id";    
             comm.Parameters.AddWithValue("?f", flight[0]);
             MySqlDataReader reader = comm.ExecuteReader();
 
@@ -85,7 +85,7 @@ namespace WpfApp2
         private void add_items(string[] rout, List<station> stations)   // добавление данных в tree view 
         {
             TreeViewItem header = new TreeViewItem();
-            header.Header = rout[1];
+            header.Header = rout[0] + ": " + rout[1];
             foreach(station s in stations)
             {
                 TreeViewItem subheader = new TreeViewItem();

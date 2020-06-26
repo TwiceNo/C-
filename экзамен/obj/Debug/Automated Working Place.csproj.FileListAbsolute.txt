@@ -58,3 +58,5 @@ D:\repos\WpfApp2\obj\Debug\ItemChange.g.cs
 D:\repos\WpfApp2\obj\Debug\ItemChange.baml
 D:\repos\WpfApp2\obj\Debug\CreditsWindow.g.cs
 D:\repos\WpfApp2\obj\Debug\CreditsWindow.baml
+D:\repos\WpfApp2\obj\Debug\Summary.g.cs
+D:\repos\WpfApp2\obj\Debug\Summary.baml

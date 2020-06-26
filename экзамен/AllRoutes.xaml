@@ -14,7 +14,10 @@
 
     <Grid>
         <TreeView 
-            x:Name="routs_view">
+            x:Name="routs_view"
+            Foreground="#373E40"
+            FontSize="14"
+            FontWeight="Light">
 
         </TreeView>
     </Grid>

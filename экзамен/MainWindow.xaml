@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:WpfApp2"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" Height="450" Width="800"
-        Closing="Window_Closing">
-
+        Closing="Window_Closing"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <ResourceDictionary Source="Styles.xaml"/>
@@ -31,9 +31,9 @@
             Background="#486D65">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="277*"/>
-                    <ColumnDefinition Width="99*"/>
-                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
 
                 <Popup 
@@ -76,62 +76,32 @@
                             x:Name="settings"
                             Height="50" Width="110"
                             Header="Настройки"
+                            ToolTip="F1"
                             Icon="{iconPacks:MaterialLight Kind=Cog}" 
                             Style="{StaticResource MenuItemFlat}"
-                            Click="settings_Click"
-                            />
-
-                        <!--<MenuItem
-                            x:Name="themes"
-                            Height="50" Width="150"
-                            Header="Тема оформления"
-                            Icon="{iconPacks:Material Kind=Brush}"
-                            FontFamily="Segoe UI"
-                            FontSize="14"
-                            FontWeight="Light"
-                            Foreground="#DCE0D9"   
-                            Cursor="Hand"
-                            >
-
-                            <MenuItem
-                                x:Name="green"
-                                Style="{StaticResource SubMenuItemFlat}"
-                                Header="Зеленая"
-                                />
-
-                            <MenuItem
-                                x:Name="blue"
-                                Style="{StaticResource SubMenuItemFlat}"
-                                Header="Синяя"
-                                />
-
-                            <MenuItem
-                                x:Name="violet"
-                                Style="{StaticResource SubMenuItemFlat}"
-                                Header="Фиолетовая"
-                                Width="130"
-                                />
-
-                        </MenuItem>-->
+                            Click="settings_Click">
+                        </MenuItem>
 
                         <MenuItem
                             x:Name="tickets"
                             Height="50"
                             Width="90"
                             Header="Билеты"
+                            ToolTip="F2"
                             Icon="{iconPacks:Material Kind=TicketOutline}"
                             Style="{StaticResource MenuItemFlat}"
-                            Click="tickets_Click"
-                            />
+                            Click="tickets_Click">
+                        </MenuItem>
 
                         <MenuItem
                             x:Name="credits"
                             Height="50" Width="130"
                             Header="О программе"
+                            ToolTip="F3"
                             Icon="{iconPacks:MaterialLight Kind=Information}"
                             Style="{StaticResource MenuItemFlat}"
-                            Click="credits_Click"
-                            />
+                            Click="credits_Click">
+                        </MenuItem>
                     </Menu>
 
                 </StackPanel>
@@ -202,6 +172,7 @@
                                 Width="240"
                                 Height="40"
                                 Click="edit_profile_Click"
+                                ToolTip="F4"
                                 Style="{StaticResource SubMenuItemFlat}"
                                 />
                             <MenuItem
@@ -212,6 +183,21 @@
                                 Icon="{iconPacks:MaterialLight Kind=Logout}"
                                 Style="{StaticResource SubMenuItemFlat}"
                                 />
+                        </MenuItem>
+                        <MenuItem 
+                            x:Name="exit"
+                            Click="exit_Click"
+                            Height="50"
+                            Width="40"
+                            Icon="{iconPacks:Material
+                                   Kind=DoorOpen}"
+                            HorizontalAlignment="Center"
+                            FontFamily="Segoe UI"
+                            FontSize="14"
+                            FontWeight="Light"
+                            Foreground="#DCE0D9" 
+                            Cursor="Hand"
+                            Style="{StaticResource MenuItemFlat}">
                         </MenuItem>
                     </Menu>
                 </DockPanel>

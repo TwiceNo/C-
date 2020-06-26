@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WpfApp2"
                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Все пользователи" Height="500" Width="440">
+        Title="Все пользователи" Height="500" Width="440"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

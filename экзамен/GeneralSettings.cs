@@ -10,7 +10,7 @@ namespace WpfApp2
     public class GeneralSettings
     {
         public bool printable;
-        public string path_t, path_s;
+        public string path_t;
 
         public GeneralSettings()
         {
@@ -23,13 +23,11 @@ namespace WpfApp2
             {
                 StreamReader reader = new StreamReader("settings.txt");
                 path_t = reader.ReadLine();
-                path_s = reader.ReadLine();
                 printable = bool.Parse(reader.ReadLine());
             }
             else
             {
                 path_t = "tickets\\";
-                path_s = "summary.txt";
                 printable = true;
                 write_down();
             }
@@ -37,7 +35,7 @@ namespace WpfApp2
 
         public void write_down()
         {
-            File.WriteAllLines("settings.txt", new string[3] { path_t, path_s, printable.ToString() });
+            File.WriteAllLines("settings.txt", new string[2] { path_t,  printable.ToString() });
         }
     }
 }

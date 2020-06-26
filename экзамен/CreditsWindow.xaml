@@ -8,7 +8,8 @@
         Title="CreditsWindow" Height="250" Width="250"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Border
             CornerRadius="250"

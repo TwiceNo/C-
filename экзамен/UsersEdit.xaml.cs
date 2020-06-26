@@ -29,6 +29,11 @@ namespace WpfApp2
             
         }
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
+        }
+
         private void add_Click(object sender, RoutedEventArgs e)
         {
             add_item();

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Настройки" Height="300" Width="470">
+        Title="Настройки" Height="250" Width="470"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -113,32 +114,11 @@
                     Width="150"
                     Margin="10"
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    Text="Сводка"
-                    FontSize="14"/>
-                <TextBox
-                    x:Name="path_s"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Width="200"
-                    Height="30"/>
-                <Button
-                    x:Name="browser_s"
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    Height="30"
-                    Width="70"
-                    Content="Обзор"
-                    FontSize="14"
-                    Click="browser_s_Click" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                <TextBlock
-                    Width="150"
-                    Margin="10"
-                    VerticalAlignment="Center" HorizontalAlignment="Left"
                     Text="Распечатанные билеты"
                     FontSize="14"/>
                 <TextBox
                     x:Name="path_t"
+                    VerticalContentAlignment="Center"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Width="200"
                     Height="30"/>

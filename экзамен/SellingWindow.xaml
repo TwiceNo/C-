@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="Продажа билетов" Height="450" Width="400"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
 
     <Window.Resources>
         <Style x:Key="FocusVisual">

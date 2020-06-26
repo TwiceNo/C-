@@ -31,23 +31,11 @@ namespace WpfApp2
 
         private void initialize_content()       // инициализация полей текущими настройками
         {
-            this.path_s.Text = settings.path_s;
             this.path_t.Text = settings.path_t;
             this.save_tickets.IsChecked = settings.printable;
         }
 
         // выбор папок
-
-        private void browser_s_Click(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            DialogResult res = dialog.ShowDialog();
-            if (res == System.Windows.Forms.DialogResult.OK)
-            {
-                this.path_s.Text = dialog.SelectedPath;
-                settings.path_s = dialog.SelectedPath;
-            }
-        }
 
         private void browser_t_Click(object sender, RoutedEventArgs e)
         {
@@ -73,6 +61,11 @@ namespace WpfApp2
         private void save_tickets_Click(object sender, RoutedEventArgs e)
         {
             settings.printable = !settings.printable;
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
         }
     }
 }

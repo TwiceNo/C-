@@ -58,7 +58,7 @@ namespace WpfApp2
 
         public void logout()    // удаление файла пользователя
         {
-            string file = "temp\\usr.txt";
+            string file = "temp\\user.txt";
             File.Delete(file);
         }
 

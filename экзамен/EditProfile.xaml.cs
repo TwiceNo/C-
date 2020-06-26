@@ -35,10 +35,21 @@ namespace WpfApp2
             this.user = user;
             this.username.Text = String.Join(" ", new string[3] { user.surname, user.name, user.patronymic });
             if (this.user.privileged)
+            {
                 this.extras.Visibility = Visibility.Visible;
+                this.scroller.Visibility = Visibility.Visible;
+            }
             else
+            {
                 this.extras.Visibility = Visibility.Hidden;
+                this.scroller.Visibility = Visibility.Hidden;
+            }
             this.newpassword.IsEnabled = false;
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
         }
 
         private void browser_Click(object sender, RoutedEventArgs e)        // для смены иконки потребуется перезапуск программы

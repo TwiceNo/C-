@@ -15,6 +15,7 @@ using MySql.Data.MySqlClient;
 using System.Globalization;
 using System.Windows.Media.Animation;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -41,6 +42,11 @@ namespace WpfApp2
             this.login = login;
             this.delegates = new List<Action>();
             initialize_fields();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
         }
 
         private void initialize_fields()        // заполнение полей данными пользователя
@@ -100,17 +106,31 @@ namespace WpfApp2
 
         private string generate()       // генерация логина
         {
+            string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            string login = "there will be login";
+            bool gotcha = false;
+            Random random = new Random();
+
+            while(!gotcha)
+            {
+                login = "";
+                for (int i = 0; i < 5; i++)
+                    login += chars[random.Next(chars.Length)];
+                if (unique(login) == 0) gotcha = true;
+            }
+
+            return login;
+        }
+
+        private int unique(string s)        // проверка на содержание такого логина в бд
+        {
             Users db = new Users();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
-            comm.CommandText = "SELECT COUNT(*) FROM users";
+            comm.CommandText = "SELECT EXISTS(SELECT login FROM users WHERE login = ?l)";
+            comm.Parameters.AddWithValue("?l", s);
 
-            int index = int.Parse(comm.ExecuteScalar().ToString()) + 1;
-
-            string log = index.ToString();
-            while (log.Length < 4)
-                log = "0" + log;
-            return "e" + log;
+            return int.Parse(comm.ExecuteScalar().ToString());
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
@@ -121,7 +141,10 @@ namespace WpfApp2
         private void confirm_Click(object sender, RoutedEventArgs e)
         {
             if (!update_mode)
+            {
                 add_all();
+                MessageBox.Show("Логин нового пользователя: " + this.login + "\nПароль: 0000", "Данные входа", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             else
                 foreach (Action action in delegates)        // при изменении полей в список заносятся соответетствующие делегаты 
                     action.Invoke();                        // и выполняются по нажатию на кнопку подтверждения

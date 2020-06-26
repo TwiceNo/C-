@@ -254,6 +254,11 @@ namespace WpfApp2
         //---------HANDLERS------------
         //-----------------------------
 
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) this.Close();
+        }
+
         private void num_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
