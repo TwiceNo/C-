@@ -37,12 +37,10 @@ namespace WpfApp2
             if (this.user.privileged)
             {
                 this.extras.Visibility = Visibility.Visible;
-                this.scroller.Visibility = Visibility.Visible;
             }
             else
             {
                 this.extras.Visibility = Visibility.Hidden;
-                this.scroller.Visibility = Visibility.Hidden;
             }
             this.newpassword.IsEnabled = false;
         }
