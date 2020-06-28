@@ -35,6 +35,7 @@ namespace WpfApp2
             this.save_tickets.IsChecked = settings.printable;
         }
 
+
         // выбор папок
 
         private void browser_t_Click(object sender, RoutedEventArgs e)
@@ -44,7 +45,6 @@ namespace WpfApp2
             if (res == System.Windows.Forms.DialogResult.OK)
             {
                 this.path_t.Text = dialog.SelectedPath;
-                settings.path_t = dialog.SelectedPath;
             }
         }
 
@@ -55,7 +55,9 @@ namespace WpfApp2
 
         private void accept_Click(object sender, RoutedEventArgs e)
         {
+            settings.path_t = this.path_t.Text + "\\";
             settings.write_down();
+            this.Close();
         }
 
         private void save_tickets_Click(object sender, RoutedEventArgs e)
@@ -66,6 +68,12 @@ namespace WpfApp2
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Escape) this.Close();
+        }
+
+        private void default_Click(object sender, RoutedEventArgs e)
+        {
+            this.settings.set_default();
+            initialize_content();
         }
     }
 }

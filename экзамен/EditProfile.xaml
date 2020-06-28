@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Редактирование профиля" Height="395" Width="520"
+        Title="Редактирование профиля" Height="430" Width="520"
         KeyDown="Window_KeyDown">
 
     <Window.Resources>
@@ -114,38 +114,76 @@
                 Margin="20"/>
 
 
-                <StackPanel Orientation="Horizontal"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <TextBlock
-                    Text="Фотография профиля"
-                    TextAlignment="Right"
-                    FontSize="14"
-                    Width="200"
-                    Margin="20,10,20,10"/>
-                    <Button
-                    x:Name="browser"
-                    Content="Выбрать файл"
-                    FontSize="14"
-                    Height="30"
-                    Width="200"
-                    Margin="20, 0, 20, 0"
-                    Click="browser_Click"/>
+                <StackPanel>
+                    <Border
+                        BorderBrush="#5B8E7D"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Margin="10">
+                        <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock
+                                Text="Фотография профиля"
+                                TextAlignment="Center"
+                                FontSize="14"
+                                Width="200"
+                                Margin="20,10,20,10"/>
+                                <Border
+                                    x:Name="photo_holder"
+                                    Height="200"
+                                    Width="200"
+                                    Visibility="Collapsed"
+                                    >
+                                    <Border.Background>
+                                        <ImageBrush
+                                            x:Name="photo">
+                                        </ImageBrush>
+                                    </Border.Background>
+                            </Border>
+                            <Button
+                                x:Name="browser"
+                                Content="Выбрать файл"
+                                FontSize="14"
+                                Height="30"
+                                Width="200"
+                                Margin="20, 10, 20, 10"
+                                Click="browser_Click"/>
+                            <Button
+                                x:Name="delete"
+                                Content="Удалить фото"
+                                FontSize="14"
+                                Height="30"
+                                Width="200"
+                                Margin="20, 10, 20, 20"
+                                Click="delete_Click"/>
+                        </StackPanel>
+                    </Border>
+                    
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                    <TextBlock
-                    Text="Логин"
-                    TextAlignment="Right"
-                    FontSize="14"
-                    Width="200"
-                    Margin="20,10,20,10"/>
-                    <TextBox
-                    x:Name="login"
-                    FontSize="14"
-                    Width="200"
-                    Margin="20,5,20,5"
-                    VerticalContentAlignment="Center"
-                    TextChanged="login_TextChanged"/>
+                <StackPanel>
+                    <Border
+                        BorderBrush="#E28413"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Margin="10">
+                        <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                            Margin="10">
+                            <TextBlock
+                                Text="Логин"
+                                TextAlignment="Right"
+                                FontSize="14"
+                                Width="180"
+                                Margin="20,15,20,15"/>
+                            <TextBox
+                                x:Name="login"
+                                FontSize="14"
+                                Width="200"
+                                Margin="20,10,20,10"
+                                VerticalContentAlignment="Center"
+                                TextChanged="login_TextChanged"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Border

@@ -1,6 +1,7 @@
 ﻿using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +37,8 @@ namespace WpfApp2
                 initialize_act();
                 this.Title = "Касса " + user.ticket_window;
                 this.username.Text = String.Join(" ", new string[2] { user.name, user.patronymic });
-                if (user.photo != null)
-                    this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
                 this.connected = true;
+                set_photo();
                 gen_settings = new GeneralSettings();
             }
             else connected = false;
@@ -70,6 +70,13 @@ namespace WpfApp2
             else return true;
         }
 
+        private void set_photo()
+        {
+            if (user.photo != null)
+                this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
+            else
+                this.photo.ImageSource = new BitmapImage(new Uri(@"z:\\user_photos\\no_user_photo.png", UriKind.Relative));
+        }
 
         //-----------------------------------
         //------------HANDLERS---------------
@@ -176,9 +183,8 @@ namespace WpfApp2
          
         private void show_profile()
         {
-            EditProfile window = new EditProfile(user);
+            EditProfile window = new EditProfile(user, this.photo);
             window.ShowDialog();
-            this.user = window.user;
         } 
 
         //Pages

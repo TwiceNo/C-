@@ -63,6 +63,7 @@ namespace WpfApp2
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Escape) this.Close();
+            if (e.Key == Key.Enter) connection_check(username.Text, password.Password);
         }
 
         private void connection_check(string login, string password)    // пытается найти соответствующего пользователя

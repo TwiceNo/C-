@@ -155,7 +155,7 @@ namespace WpfApp2
                     db.connection.Open();
                     MySqlCommand command = db.connection.CreateCommand();
 
-                    command.CommandText = "SELECT `departure point`, destination FROM `all traffic` WHERE flight = ?f";         // получить газвание маршрута
+                    command.CommandText = "SELECT `departure point`, destination FROM `all traffic` WHERE flight = ?f";         // получить название маршрута
                     command.Parameters.AddWithValue("?f", prob[i][0]);
                     reader = command.ExecuteReader();
                     reader.Read();

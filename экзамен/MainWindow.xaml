@@ -124,8 +124,7 @@
                         >
                         <Border.Background>
                             <ImageBrush 
-                                x:Name="photo"
-                                ImageSource="z:\\user_photos\\no_user_photo.png">
+                                x:Name="photo">
                             </ImageBrush>
                         </Border.Background>
                     </Border>

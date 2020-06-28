@@ -406,24 +406,30 @@ namespace WpfApp2
 
         private void print_ticket(int num)
         {
+            int[] c = get_carriage();
             if (settings.printable)
                 for (int i = 0; i < num; i++)
                 {
                     int n = get_ticket_num();
-                    int[] c = get_carriage();
                     string ticket = "Билет " + n + "\n";
                     ticket += "Рейс " + curr_rout.rout + " ";
                     ticket += curr_rout.name + "\n";
-                    ticket += "Начальная остановка " + curr_rout.departure + "\n";
-                    ticket += "Конечная остановка " + curr_rout.destination + "\n";
-                    ticket += "Время отправления " + curr_rout.dH +":"+curr_rout.dM + " " + DateTime.Now.ToString("dd/mm/yyyy") + "\n";
-                   // ticket += "Время прибытия " + get_time() + "\n";
+                    ticket += "Начальная остановка: " + curr_rout.departure + "\n";
+                    ticket += "Конечная остановка: " + curr_rout.destination + "\n";
+                    ticket += "Время отправления: " + curr_rout.dH +":"+curr_rout.dM + " " + DateTime.Now.ToString("dd/MM/yyyy") + "\n";
+                    ticket += "Время прибытия: " + get_time(DateTime.Now.ToString("dd/MM/yyyy")) + "\n";
                     ticket += "Платформа " + get_platform() + "\n";
                     ticket += "Состав " + curr_rout.train + "\n";
-                    ticket += "Вагон " + (c[0] + 1) + " " + curr_rout.type + "\n";
+                    ticket += "Вагон " + c[0] + " " + curr_rout.type + "\n";
                     ticket += "Место " + c[1] + "\n";
-                    ticket += "Стоимость " + (float.Parse(this.sum.Text) / num) + "\n";
-                    ticket += "Кассир " + user.surname + " " + user.name + " " + user.patronymic;
+                    ticket += "Стоимость: " + (float.Parse(this.sum.Text) / num) + "\n";
+                    ticket += "Кассир: " + user.surname + " " + user.name + " " + user.patronymic;
+                    if (c[1] == c[2])
+                    {
+                        c[0]++;
+                        c[1] = 1;
+                    }
+                    else c[1]++;
 
                     if (!Directory.Exists(settings.path_t))
                         Directory.CreateDirectory(settings.path_t);
@@ -536,7 +542,11 @@ namespace WpfApp2
             int t = int.Parse(reader[1].ToString());
             int l = int.Parse(reader[2].ToString());
 
-            return new int[2] { l / (t / c), l % (t / c) };
+            int seats = t / c;
+            int carriage = (t - l) / seats + 1;
+            int seat = (t - l) % seats + 1;
+
+            return new int[3] { carriage, seat, seats };
         }
 
         private int get_platform()
@@ -554,13 +564,43 @@ namespace WpfApp2
             return int.Parse(comm.ExecuteScalar().ToString());
         }
 
-        //private string get_time()
-        //{
-        //    Database db = new Database();
-        //    db.connection.Open();
-        //    MySqlCommand comm = db.connection.CreateCommand();
-        //    comm.CommandText = ""
-        //}
+        private string get_time(string day)
+        {
+            int[] time = new int[3];
+
+            Database db = new Database();
+            db.connection.Open();
+            MySqlCommand comm = db.connection.CreateCommand();
+            comm.CommandText = "SELECT `travel time` , `stop time` FROM rout WHERE flight = ?f AND id > ( SELECT id FROM rout " +
+                "WHERE station = ?dep AND flight = ?f) AND id <= (SELECT id FROM rout WHERE station = ?des AND flight = ?f)";
+            comm.Parameters.AddWithValue("?f", curr_rout.rout);
+            comm.Parameters.AddWithValue("?dep", curr_rout.departure);
+            comm.Parameters.AddWithValue("?des", curr_rout.destination);
+
+            MySqlDataReader reader = comm.ExecuteReader();
+
+            while (reader.Read())
+            {
+                time[1] += int.Parse(reader[0].ToString().Split(':')[0]);
+                time[2] += int.Parse(reader[0].ToString().Split(':')[1]) + int.Parse(reader[1].ToString());
+                if (time[2] >= 60)
+                {
+                    time[2] = time[2] % 60;
+                    time[1]++;
+                }
+                if (time[1] >= 24)
+                {
+                    time[1] = time[1] % 24;
+                    time[0]++;
+                }
+            }
+
+            db.connection.Close();
+
+            DateTime date = DateTime.Parse(day + " " + curr_rout.dH + ":" + curr_rout.dM);
+            date = date.Add(new TimeSpan(time[0], time[1], time[2], 0));
+            return date.ToString("HH:mm dd/MM/yyyy");
+        }
 
         private void update_sum(float sold)
         {

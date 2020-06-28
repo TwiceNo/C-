@@ -30,9 +30,7 @@ namespace WpfApp2
             Login_Window window = new Login_Window();
             window.ShowDialog();
             if (window.connected)
-            {
                 get_user(window.login_text, window.password_text, window.privilege, window.check_stay);
-            }
         }
 
         private void authorize()        // авторизация из файла
@@ -67,9 +65,7 @@ namespace WpfApp2
             this.login = login;
             this.password = password;
             this.privileged = privilege;
-
-            if (stay)
-                write_down();
+            write_down(stay);
             get_extra_fields();
         }
 
@@ -110,11 +106,12 @@ namespace WpfApp2
             db.connection.Close();
         }
 
-        public void write_down()
+        public void write_down(bool stay = false)
         {
             if (!Directory.Exists("temp\\"))
                 Directory.CreateDirectory("temp\\");
-            File.WriteAllLines("temp\\user.txt", new string[2] { login, password });
+            if (File.Exists("temp\\user.txt") || stay)
+                File.WriteAllLines("temp\\user.txt", new string[2] { login, password });
         }
     }
 }

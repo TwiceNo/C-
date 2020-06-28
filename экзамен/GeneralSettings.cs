@@ -25,12 +25,14 @@ namespace WpfApp2
                 path_t = reader.ReadLine();
                 printable = bool.Parse(reader.ReadLine());
             }
-            else
-            {
-                path_t = "tickets\\";
-                printable = true;
-                write_down();
-            }
+            else set_default();
+        }
+
+        public void set_default()
+        {
+            path_t = "tickets\\";
+            printable = true;
+            write_down();
         }
 
         public void write_down()

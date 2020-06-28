@@ -23,26 +23,26 @@ namespace WpfApp2
     /// </summary>
     public partial class EditProfile : Window
     {
+        public string path;
         public Current_User user;
+        public ImageBrush mw_photo;
         List<Action> delegates;         // список делегатов, которые будут вызваны для изменения данных
-        string path, name;
+        
 
-        public EditProfile(Current_User user)
+        public EditProfile(Current_User user, ImageBrush photo)
         {
             InitializeComponent();
 
             delegates = new List<Action>();
             this.user = user;
+            this.mw_photo = photo;
             this.username.Text = String.Join(" ", new string[3] { user.surname, user.name, user.patronymic });
-            if (this.user.privileged)
-            {
-                this.extras.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                this.extras.Visibility = Visibility.Hidden;
-            }
             this.newpassword.IsEnabled = false;
+            set_photo();
+            if (this.user.privileged)
+                this.extras.Visibility = Visibility.Visible;
+            else
+                this.extras.Visibility = Visibility.Hidden;
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -57,10 +57,18 @@ namespace WpfApp2
             if (browse.ShowDialog() == true)
             {
                 path = browse.FileName;
-                name = browse.SafeFileName;
                 if (!delegates.Contains(change_photo))
-                    delegates.Add(change_photo);
+                    delegates.Add(update_photo);
+                change_photo();
             }
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            this.user.photo = null;
+            set_photo();
+            if (!delegates.Contains(delete_photo))
+                delegates.Add(update_photo);
         }
 
         private void user_edit_Click(object sender, RoutedEventArgs e)
@@ -72,6 +80,7 @@ namespace WpfApp2
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            this.photo.ImageSource = null;
         }
 
         private void confirm_Click(object sender, RoutedEventArgs e)
@@ -109,7 +118,7 @@ namespace WpfApp2
         }
 
         private void login_TextChanged(object sender, TextChangedEventArgs e)
-        {
+       {
             if (!check_login())
                 this.login_check.IsOpen = true;
             else this.login_check.IsOpen = false;
@@ -118,19 +127,25 @@ namespace WpfApp2
                 delegates.Add(change_login);
         }
 
-        private void copy_photo()       // копирует пользовательскую картинку в папку на сервере и обновляет данные в бд
+        private void change_photo()       //"загрузка" картинки на "сервер"
         {
-            delete_photo();
-            string new_path = "z:\\user_photos\\" + path.Replace(name, user.login).Substring(path.LastIndexOf('\\'));
+            string ext = path.Substring(path.LastIndexOf('.'));
+            string new_path = "z:\\user_photos\\" + generate() + ext;
+
             File.Copy(path, new_path);
 
-            user.photo = new_path;
+            this.user.photo = new_path;
 
+            set_photo();
+        }
+
+        private void update_photo()
+        {
             Users db = new Users();
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
             comm.CommandText = "UPDATE `personal data` SET photo = ?p WHERE login = ?l";
-            comm.Parameters.AddWithValue("?p", new_path);
+            comm.Parameters.AddWithValue("?p", user.photo);
             comm.Parameters.AddWithValue("?l", user.login);
             comm.ExecuteNonQuery();
             db.connection.Close();
@@ -138,7 +153,13 @@ namespace WpfApp2
 
         private void delete_photo()
         {
-            if (user.photo != null) File.Delete(user.photo);
+            Users db = new Users();
+            db.connection.Open();
+            MySqlCommand comm = db.connection.CreateCommand();
+            comm.CommandText = "UPDATE `personal data` SET photo = NULL WHERE login = ?l";
+            comm.Parameters.AddWithValue("?l", user.login);
+            comm.ExecuteNonQuery();
+            db.connection.Close();
         }
 
         private bool check_login()
@@ -180,7 +201,7 @@ namespace WpfApp2
             db.connection.Open();
             MySqlCommand comm = db.connection.CreateCommand();
             comm.CommandText = "SELECT login FROM users WHERE login = ?l";
-
+            comm.Parameters.AddWithValue("?l", this.login.Text);
             try 
             {
                 MySqlDataReader reader = comm.ExecuteReader();
@@ -222,9 +243,30 @@ namespace WpfApp2
             user.password = this.newpassword.Password;
         }
 
-        private void change_photo()
+        private void set_photo()    //установка пользовательской картинки сразу на главном окне и в окне профиля
         {
-            copy_photo();
+            if(this.user.photo != null)
+            {
+                this.photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
+                this.photo_holder.Visibility = Visibility.Visible;
+                this.mw_photo.ImageSource = new BitmapImage(new Uri(user.photo, UriKind.Relative));
+            }
+            else
+            {
+                this.photo_holder.Visibility = Visibility.Collapsed;
+                this.mw_photo.ImageSource = new BitmapImage(new Uri(@"z:\\user_photos\\no_user_photo.png", UriKind.Relative));
+            }
         }
+
+        private string generate()   //генерация имени файла
+        {
+            string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            string name = "";
+            Random random = new Random();
+            for (int i = 0; i < 16; i++)
+                name += chars[random.Next(chars.Length)];
+            return name;
+        }
+
     }
 }
