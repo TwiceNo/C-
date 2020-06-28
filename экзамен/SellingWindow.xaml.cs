@@ -406,11 +406,11 @@ namespace WpfApp2
 
         private void print_ticket(int num)
         {
+            int[] c = get_carriage();
             if (settings.printable)
                 for (int i = 0; i < num; i++)
                 {
                     int n = get_ticket_num();
-                    int[] c = get_carriage();
                     string ticket = "Билет " + n + "\n";
                     ticket += "Рейс " + curr_rout.rout + " ";
                     ticket += curr_rout.name + "\n";
@@ -420,10 +420,16 @@ namespace WpfApp2
                    // ticket += "Время прибытия " + get_time() + "\n";
                     ticket += "Платформа " + get_platform() + "\n";
                     ticket += "Состав " + curr_rout.train + "\n";
-                    ticket += "Вагон " + (c[0] + 1) + " " + curr_rout.type + "\n";
+                    ticket += "Вагон " + c[0] + " " + curr_rout.type + "\n";
                     ticket += "Место " + c[1] + "\n";
                     ticket += "Стоимость " + (float.Parse(this.sum.Text) / num) + "\n";
                     ticket += "Кассир " + user.surname + " " + user.name + " " + user.patronymic;
+                    if (c[1] == c[2])
+                    {
+                        c[0]++;
+                        c[1] = 1;
+                    }
+                    else c[1]++;
 
                     if (!Directory.Exists(settings.path_t))
                         Directory.CreateDirectory(settings.path_t);
@@ -536,7 +542,11 @@ namespace WpfApp2
             int t = int.Parse(reader[1].ToString());
             int l = int.Parse(reader[2].ToString());
 
-            return new int[2] { l / (t / c), l % (t / c) };
+            int seats = t / c;
+            int carriage = (t - l) / seats + 1;
+            int seat = (t - l) % seats + 1;
+
+            return new int[3] { carriage, seat, seats };
         }
 
         private int get_platform()
