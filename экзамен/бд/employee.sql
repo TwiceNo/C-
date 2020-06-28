@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 26 2020 г., 16:07
+-- Время создания: Июн 29 2020 г., 03:04
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -42,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `personal data` (
 --
 
 INSERT INTO `personal data` (`login`, `surname`, `name`, `patronymic`, `ticket window`, `photo`) VALUES
-('admin', 'Иерофантов', 'Анатолий', 'Иннокентьевич', 0, 'z:\\user_photos\\\\admin'),
-('e0001', 'Смирнова', 'Мария', 'Васильевна', 1, NULL),
-('e0002', 'Галактионова', 'Валентина', 'Геннадьевна', 2, 'z:\\user_photos\\\\e0002'),
+('admin', 'Иерофантов', 'Анатолий', 'Иннокентьевич', 0, NULL),
+('e0001', 'Смирнова', 'Мария', 'Васильевна', 1, 'z:\\user_photos\\kwpy9v6nsdqeh2at.jpg'),
 ('e0003', 'Андрафонов', 'Никандр', 'Феоктистович', 3, NULL),
 ('e0005', 'Соколов', 'Борис', 'Андреевич', 5, NULL),
-('e0006', 'Кукушкина', 'Виталина', 'Владиславовна', 4, NULL),
-('uzhasnakryliahnochi', 'Ван Дер Эретайн', 'Детлафф', '', 3, 'z:\\user_photos\\\\uzhasnakryliahnochi');
+('e0006', 'Дроздова', 'Виталина', 'Владиславовна', 1, NULL),
+('galaxie', 'Галактионова', 'Валентина', 'Геннадьевна', 2, NULL),
+('uzhasnakryliahnochi', 'Ван Дер Эретайн', 'Детлафф', '', 4, 'z:\\user_photos\\uzhasnakryliahnochi.png');
 
 -- --------------------------------------------------------
 
@@ -69,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `sold tickets` (
 
 INSERT INTO `sold tickets` (`ticket window`, `sold`, `sum`) VALUES
 (1, 0, '0.00'),
-(2, 0, '0.00'),
+(2, 15, '68910.15'),
 (3, 0, '0.00'),
-(4, 0, '0.00'),
+(4, 15, '37039.20'),
 (5, 0, '0.00');
 
 -- --------------------------------------------------------
@@ -94,11 +94,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`login`, `password`, `privileged`) VALUES
 ('admin', 'admin', 1),
 ('e0001', '0000', 0),
-('e0002', '0000', 0),
 ('e0003', '0000', 0),
 ('e0005', 'sokolov', 0),
 ('e0006', '0000', 0),
-('uzhasnakryliahnochi', '0000', 0);
+('galaxie', 'valya', 0),
+('uzhasnakryliahnochi', 'sianna', 0);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -109,12 +109,6 @@ INSERT INTO `users` (`login`, `password`, `privileged`) VALUES
 --
 ALTER TABLE `personal data`
   ADD CONSTRAINT `personal@0020data_ibfk_1` FOREIGN KEY (`login`) REFERENCES `users` (`login`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `sold tickets`
---
-ALTER TABLE `sold tickets`
-  ADD CONSTRAINT `sold@0020tickets_ibfk_1` FOREIGN KEY (`ticket window`) REFERENCES `personal data` (`ticket window`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
