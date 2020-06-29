@@ -185,6 +185,7 @@
                         </MenuItem>
                         <MenuItem 
                             x:Name="exit"
+                            ToolTip="Выход (Esc)"
                             Click="exit_Click"
                             Height="50"
                             Width="40"
@@ -234,14 +235,14 @@
                         Style="{StaticResource TabControlFlat}">
                             <TabItem.Header>
                                 <StackPanel 
-                                x:Name="all_routes"
-                                Height="45"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Width="150"
+                                    x:Name="all_routes"
+                                    Height="45"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Width="150"
                                     Background="Transparent"
-                                ToolTip="Просмотреть все рейсы и маршруты"
-                                MouseLeftButtonDown="all_routes_MouseLeftButtonDown">
+                                    ToolTip="Просмотреть все рейсы и маршруты (A)"
+                                    MouseLeftButtonDown="all_routes_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterial 
                                     Kind="Routes"
                                     Width="20"
@@ -267,7 +268,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                     Background="Transparent"
-                                ToolTip="Просмотреть все доступные рейсы на сегодня"
+                                ToolTip="Просмотреть все доступные рейсы на сегодня (T)"
                                 MouseLeftButtonDown="last_routes_MouseLeftButtonDown" Width="188">
                                     <iconPacks:PackIconMaterialLight 
                                     Kind="Clock"
@@ -293,7 +294,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                     Background="Transparent"
-                                ToolTip="Сводка о проданных билетах за сегодня"
+                                ToolTip="Сводка о проданных билетах за сегодня (S)"
                                 MouseLeftButtonDown="summary_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterialLight 
                                     Kind="File"
@@ -318,7 +319,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                     Background="Transparent"
-                                ToolTip="Найти подходящий рейс"
+                                ToolTip="Найти подходящий рейс (F)"
                                 MouseLeftButtonDown="search_MouseLeftButtonDown">
                                     <iconPacks:PackIconMaterialLight 
                                     Kind="Magnify"

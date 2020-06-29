@@ -110,10 +110,10 @@ namespace WpfApp2
                 db.connection.Close();
             }
 
-            possible.Distinct();
             possible.Sort();
+            IEnumerable<string> items = possible.Distinct();
 
-            this.destination.ItemsSource = possible;
+            this.destination.ItemsSource = items;
         }
 
         private void initialize_rout()
@@ -184,8 +184,10 @@ namespace WpfApp2
 
             if (possible.Count > 0)
                 possible.Sort();
+            
+            IEnumerable<string> items = possible.Distinct();
 
-            this.rout.ItemsSource = possible;
+            this.rout.ItemsSource = items;
         }
 
         private void initialize_carr()
@@ -221,7 +223,10 @@ namespace WpfApp2
 
             db.connection.Close();
 
-            this.carriage.ItemsSource = possible;
+            possible.Sort();
+            IEnumerable<string> items = possible.Distinct();
+
+            this.carriage.ItemsSource = items;
         }
 
         private void initialize_numt()

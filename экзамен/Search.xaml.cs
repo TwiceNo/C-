@@ -80,10 +80,10 @@ namespace WpfApp2
                 db.connection.Close();
             }
 
-            items.Distinct();
             items.Sort();
+            IEnumerable<string> itemsf = items.Distinct();
 
-            this.from.ItemsSource = items;
+            this.from.ItemsSource = itemsf;
         }
 
         private void initialize_to()
@@ -124,10 +124,10 @@ namespace WpfApp2
                 db.connection.Close();
             }
 
-            possible.Distinct();
             possible.Sort();
+            IEnumerable<string> items = possible.Distinct();
 
-            this.to.ItemsSource = possible;
+            this.to.ItemsSource = items;
         }
 
         private void initialize_rout()
@@ -238,6 +238,8 @@ namespace WpfApp2
 
         private void to_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!this.to.Items.Contains(des))
+                this.to.SelectedIndex = 0;
             des = this.to.SelectedItem.ToString();
         }
 
@@ -246,6 +248,8 @@ namespace WpfApp2
             this.to.IsEnabled = true;
             dep = this.from.SelectedItem.ToString();
             initialize_to();
+            if (!this.to.Items.Contains(des))
+                this.to.SelectedIndex = 0;
         }
     }
 }

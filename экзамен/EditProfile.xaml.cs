@@ -50,7 +50,7 @@ namespace WpfApp2
             if (e.Key == Key.Escape) this.Close();
         }
 
-        private void browser_Click(object sender, RoutedEventArgs e)        // для смены иконки потребуется перезапуск программы
+        private void browser_Click(object sender, RoutedEventArgs e)        // выбор картинки
         {
             OpenFileDialog browse = new OpenFileDialog();
             browse.Filter = "Изображения (*.jpeg; *.jpg; *.png)|*.jpeg; *.jpg; *.png";
@@ -268,5 +268,34 @@ namespace WpfApp2
             return name;
         }
 
+        private void login_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(this.login.Text == "")
+            {
+                this.login_check.IsOpen = false;
+                if (delegates.Contains(change_login))
+                    delegates.Remove(change_login);
+            }
+        }
+
+        private void password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.password.Password == "")
+            {
+                this.not_match.IsOpen = false;
+                if (delegates.Contains(change_password))
+                    delegates.Remove(change_password);
+            }
+        }
+
+        private void newpassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.newpassword.Password == "")
+            {
+                this.newpass.IsOpen = false;
+                if (delegates.Contains(change_password))
+                    delegates.Remove(change_password);
+            }
+        }
     }
 }

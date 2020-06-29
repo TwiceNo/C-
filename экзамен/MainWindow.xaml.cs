@@ -32,12 +32,14 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            if (initialize_user())      // инициализация пользователя
+
+            if (initialize_user())      //окно запустится только после инициализации пользователя
             {
                 initialize_act();
                 this.Title = "Касса " + user.ticket_window;
                 this.username.Text = String.Join(" ", new string[2] { user.name, user.patronymic });
                 this.connected = true;
+                show_routes();
                 set_photo();
                 gen_settings = new GeneralSettings();
             }
@@ -191,24 +193,28 @@ namespace WpfApp2
 
         private void show_routes()
         {
+            this.SideMenu.SelectedIndex = 0;
             AllRoutes page = new AllRoutes();
             this.Page.Navigate(page);
         }
 
         private void show_table()
         {
+            this.SideMenu.SelectedIndex = 1;
             LastRoutes page = new LastRoutes();
             this.Page.Navigate(page);
         }
 
         private void show_summary()
         {
+            this.SideMenu.SelectedIndex = 2;
             Summary page = new Summary();
             this.Page.Navigate(page);
         }
 
         private void show_search()
         {
+            this.SideMenu.SelectedIndex = 3;
             Search page = new Search();
             this.Page.Navigate(page);
         }

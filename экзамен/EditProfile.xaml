@@ -181,7 +181,8 @@
                                 Width="200"
                                 Margin="20,10,20,10"
                                 VerticalContentAlignment="Center"
-                                TextChanged="login_TextChanged"/>
+                                TextChanged="login_TextChanged"
+                                LostFocus="login_LostFocus"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -214,7 +215,8 @@
                                 Width="200"
                                 Margin="20,5,20,5"
                                 VerticalContentAlignment="Center"
-                                PasswordChanged="password_PasswordChanged"/>
+                                PasswordChanged="password_PasswordChanged"
+                                LostFocus="password_LostFocus"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -230,7 +232,8 @@
                                 Width="200"
                                 Margin="20,5,20,5"
                                 VerticalContentAlignment="Center"
-                                PasswordChanged="newpassword_PasswordChanged"/>
+                                PasswordChanged="newpassword_PasswordChanged"
+                                LostFocus="newpassword_LostFocus"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
